@@ -1,0 +1,130 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth2.googleapis.com/token
+    body:
+      encoding: ASCII-8BIT
+      string: "<GCP_OAUTH_TOKEN_REFRESH>"
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2024 09:13:34 GMT
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "access_token": "<ACCESS_TOKEN>",
+          "expires_in": 3599,
+          "scope": "https://www.googleapis.com/auth/cloud-platform openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/sqlservice.login",
+          "token_type": "Bearer",
+          "id_token": "<ID_TOKEN>"
+        }
+  recorded_at: Thu, 19 Dec 2024 09:13:34 GMT
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/chains
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - HafH Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"fa692585347e4fdb22310c3c44ff3898"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2cc5c869-5a4c-4034-9857-7595b0dfa5c5
+      X-Runtime:
+      - '0.018111'
+      X-Cloud-Trace-Context:
+      - 4f966f0a29270785fc42b4aebc6b7155/1767473271353514846;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Thu, 19 Dec 2024 09:13:34 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '734'
+      Expires:
+      - Thu, 19 Dec 2024 09:13:34 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"chains":[{"id":1,"name":"ANA Hotels"},{"id":2,"name":"Abotel"},{"id":3,"name":"Aramark"},{"id":4,"name":"Airco
+        Services"},{"id":5,"name":"All Suites Hotels"},{"id":6,"name":"AC Hotels"},{"id":7,"name":"AmeriSuites"},{"id":8,"name":"AmericInn"},{"id":9,"name":"Amerihost
+        Inn"},{"id":10,"name":"Anasazi Service Corp"},{"id":11,"name":"Aramis Worldwide
+        Res"},{"id":12,"name":"Arcotel Hotels"},{"id":13,"name":"Aston Hotels"},{"id":14,"name":"World
+        Hotels"},{"id":15,"name":"Atel Hotels Network"},{"id":16,"name":"Bachelor
+        Quarters"},{"id":17,"name":"Bartell Hotels"},{"id":18,"name":"Baymont Inns"},{"id":19,"name":"Best
+        Inns"},{"id":20,"name":"Best Western"}],"pagination":{"current":{"page":1,"size":20},"next":{"page":2,"size":20}}}'
+  recorded_at: Thu, 19 Dec 2024 09:13:35 GMT
+recorded_with: VCR 6.2.0
