@@ -24,7 +24,7 @@ require 'platform_client'
 
 PlatformClient.configure do |c|
   c.base_url = 'https://kabuk-platform.com'
-  c.auth_provider = GoogleAuthCredentials.fetch_sa_jwt('https://kabuk-platform.com') # Monorepo
+  c.auth_provider = Platform::AuthTokenStorage # Check monorepo
 end
 
 chains =  PlatformClient::Requests.chains(page: 2, limit: 100)
