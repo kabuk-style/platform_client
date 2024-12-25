@@ -1,0 +1,156 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 3.3
+  Exclude:
+    - "bin/*"
+
+Bundler:
+  Enabled: true
+Gemspec:
+  Enabled: true
+
+### ---------- Style ----------
+
+Style/AndOr:
+  Enabled: true
+Style/CaseEquality:
+  Enabled: true
+Style/GlobalVars:
+  Enabled: true
+Style/StringLiterals:
+  Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: true
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+### ---------- Layout ----------
+
+Layout:
+  Enabled: true
+Layout/LineLength:
+  Enabled: false
+Layout/SpaceBeforeBrackets: # (new in 1.7)
+  Enabled: true
+
+# https://stackoverflow.com/a/51893034
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+### ---------- Naming ----------
+
+Naming:
+  Enabled: true
+Naming/VariableNumber:
+  Enabled: false
+
+### ---------- Security ----------
+
+Security:
+  Enabled: true
+
+### ---------- Lint ----------
+
+Lint:
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+Lint/DuplicateBranch: # (new in 1.3)
+  Enabled: true
+Lint/EmptyClass: # (new in 1.3)
+  Enabled: true
+Lint/UnexpectedBlockArity: # (new in 1.5)
+  Enabled: true
+Lint/AmbiguousAssignment: # (new in 1.7)
+  Enabled: true
+Lint/DeprecatedConstants: # (new in 1.8)
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
+  Enabled: true
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: true
+Lint/MissingSuper:
+  Enabled: false
+
+### ---------- RSpec ----------
+
+RSpec:
+  Include:
+    - 'spec/**/*.rb'
+RSpec/ContextWording:
+  Prefixes:
+    - and
+    - but
+    - when
+    - with
+    - without
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+Gemspec/DeprecatedAttributeAssignment: # new in 1.30
+  Enabled: true
+Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+Layout/LineContinuationLeadingSpace: # new in 1.31
+  Enabled: true
+Layout/LineContinuationSpacing: # new in 1.31
+  Enabled: true
+Layout/LineEndStringConcatenationIndentation: # new in 1.18
+  Enabled: true
+Lint/DuplicateMagicComment: # new in 1.37
+  Enabled: true
+Lint/AmbiguousOperatorPrecedence: # new in 1.21
+  Enabled: true
+Lint/AmbiguousRange: # new in 1.19
+  Enabled: true
+Lint/ConstantOverwrittenInRescue: # new in 1.31
+  Enabled: true
+Lint/EmptyInPattern: # new in 1.16
+  Enabled: true
+Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
+  Enabled: true
+Lint/NonAtomicFileOperation: # new in 1.31
+  Enabled: true
+Lint/NumberedParameterAssignment: # new in 1.9
+  Enabled: true
+Lint/OrAssignmentToConstant: # new in 1.9
+  Enabled: true
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+Lint/RequireRangeParentheses: # new in 1.32
+  Enabled: true
+Lint/RequireRelativeSelfPath: # new in 1.22
+  Enabled: true
+Lint/SymbolConversion: # new in 1.9
+  Enabled: true
+Lint/TripleQuotes: # new in 1.9
+  Enabled: true
+Lint/UselessRuby2Keywords: # new in 1.23
+  Enabled: true
+Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+Security/CompoundHash: # new in 1.28
+  Enabled: true
+Security/IoMethods: # new in 1.22
+  Enabled: true
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
