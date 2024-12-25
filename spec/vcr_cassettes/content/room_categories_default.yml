@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/room_categories
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"223ca249ccbbe83a42aa586bbc3adda2"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a8c1be38-f34f-49b7-8a1a-bf4e2745c4fa
+      X-Runtime:
+      - '0.105125'
+      X-Cloud-Trace-Context:
+      - 9fe0b243943ddd3f75c7803171d2f550/2208001889490940056;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Wed, 25 Dec 2024 05:27:46 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '466'
+      Expires:
+      - Wed, 25 Dec 2024 05:27:46 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"room_categories":[{"id":1,"name":"Triple Room"},{"id":2,"name":"Single
+        Room"},{"id":3,"name":"Family Room"},{"id":4,"name":"Double Room"},{"id":5,"name":"Quad
+        Room"},{"id":6,"name":"Suite"},{"id":7,"name":"Bunk"},{"id":8,"name":"Apartment"},{"id":9,"name":"Villa"},{"id":10,"name":"MotorHome"},{"id":11,"name":"Camp"},{"id":12,"name":"Bungalow"},{"id":13,"name":"Studio"},{"id":14,"name":"Japanese
+        Room"}],"pagination":{"current":{"page":1,"size":14},"next":null}}'
+  recorded_at: Wed, 25 Dec 2024 05:27:46 GMT
+recorded_with: VCR 6.3.1

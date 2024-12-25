@@ -27,6 +27,16 @@ module PlatformClient
           method: :get,
           type: :content,
         },
+        property_categories: {
+          uri: '/api/property_categories',
+          method: :get,
+          type: :content,
+        },
+        room_categories: {
+          uri: '/api/room_categories',
+          method: :get,
+          type: :content,
+        },
       }.freeze
 
       class << self

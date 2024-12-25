@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# TODO: Remove this after development
+require 'pry'
+
 require 'active_support'
 require 'active_support/core_ext'
 

@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/property_categories
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"88ad09dabd5c0d5dd3345b49f5ce0eef"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ea2d278f-be0e-4c63-8f15-e6b7ed45405e
+      X-Runtime:
+      - '0.095812'
+      X-Cloud-Trace-Context:
+      - a156ecefd0cbd3c5abdc88b94fe2c4b7/7938488349025106006;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Wed, 25 Dec 2024 05:11:23 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '688'
+      Expires:
+      - Wed, 25 Dec 2024 05:11:23 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"property_categories":[{"id":1,"name":"Hotel"},{"id":2,"name":"Motel"},{"id":3,"name":"Resort"},{"id":4,"name":"Inn"},{"id":5,"name":"Bed
+        & breakfast"},{"id":6,"name":"Guesthouse"},{"id":7,"name":"Condo"},{"id":8,"name":"All-inclusive
+        property"},{"id":9,"name":"Cabin"},{"id":10,"name":"Chalet"},{"id":11,"name":"Cottage"},{"id":12,"name":"Hostel/Backpacker
+        accomodation"},{"id":13,"name":"Ranch"},{"id":14,"name":"Villa"},{"id":15,"name":"Lodge"},{"id":16,"name":"Apartment"},{"id":17,"name":"Private
+        vacation home"},{"id":19,"name":"Houseboat"},{"id":20,"name":"Ryokan"},{"id":21,"name":"Tree
+        house property"}],"pagination":{"current":{"page":1,"size":20},"next":{"page":2,"size":20}}}'
+  recorded_at: Wed, 25 Dec 2024 05:11:23 GMT
+recorded_with: VCR 6.3.1

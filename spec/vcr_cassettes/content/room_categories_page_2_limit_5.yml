@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/room_categories?limit=5&page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"0bc183ae42b52e10fae0d1850391225a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6c2d543f-f1e6-45d5-9008-68acd0e45060
+      X-Runtime:
+      - '0.012508'
+      X-Cloud-Trace-Context:
+      - 755d9aa850b2adc9aaf17bc1b575ed4b/3698088570966815275;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Wed, 25 Dec 2024 05:30:32 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '221'
+      Expires:
+      - Wed, 25 Dec 2024 05:30:32 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"room_categories":[{"id":6,"name":"Suite"},{"id":7,"name":"Bunk"},{"id":8,"name":"Apartment"},{"id":9,"name":"Villa"},{"id":10,"name":"MotorHome"}],"pagination":{"current":{"page":2,"size":5},"next":{"page":3,"size":5}}}'
+  recorded_at: Wed, 25 Dec 2024 05:30:33 GMT
+recorded_with: VCR 6.3.1
