@@ -40,6 +40,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '~> 1.10'
   spec.add_dependency 'faraday-gzip', '~> 2.0'
 
+  # TODO: Remove this dependency after development. This is here
+  # to allow us to use `binding.pry` in the gem.
+  spec.add_dependency 'pry'
+
   ## Development dependencies
   spec.add_development_dependency 'rspec', '~> 3.13'
   spec.add_development_dependency 'rspec-github', '~> 2.4.0'

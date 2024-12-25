@@ -2,6 +2,8 @@
 
 require 'platform_client/responses/base'
 require 'platform_client/responses/chains'
+require 'platform_client/responses/property_categories'
+require 'platform_client/responses/room_categories'
 
 module PlatformClient
   # Wrapper over responses

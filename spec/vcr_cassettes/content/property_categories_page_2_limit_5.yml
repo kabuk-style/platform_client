@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/property_categories?limit=5&page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"1747ca06d5c6a4963a726b7ca1b4f9db"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 3fb97bab-7ab5-4bd8-9705-0200469f18f7
+      X-Runtime:
+      - '0.017103'
+      X-Cloud-Trace-Context:
+      - 5ace786f39f8e8e714645b4d899ad284/15544229882010863890;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Wed, 25 Dec 2024 05:12:08 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '241'
+      Expires:
+      - Wed, 25 Dec 2024 05:12:08 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"property_categories":[{"id":6,"name":"Guesthouse"},{"id":7,"name":"Condo"},{"id":8,"name":"All-inclusive
+        property"},{"id":9,"name":"Cabin"},{"id":10,"name":"Chalet"}],"pagination":{"current":{"page":2,"size":5},"next":{"page":3,"size":5}}}'
+  recorded_at: Wed, 25 Dec 2024 05:12:08 GMT
+recorded_with: VCR 6.3.1
