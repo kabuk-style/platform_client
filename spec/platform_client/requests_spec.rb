@@ -5,8 +5,7 @@ require_relative 'requests/support_helpers'
 RSpec.describe PlatformClient::Requests do
   before { stub_platform_client_configurations! } # comment it to generate new cassette
 
-  def check_pagination(data, expected_current, expected_next)
-    pagination = data['pagination']
+  def check_pagination(pagination, expected_current, expected_next)
     expect(pagination).to be_a Hash
     expect(pagination.keys).to contain_exactly('current', 'next')
 
@@ -20,11 +19,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.chains
         expect(response).to be_a PlatformClient::Responses::Chains
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('chains', 'pagination')
-
-        chains = data['chains']
+        chains = response.data
         expect(chains).to be_a Array
         expect(chains.size).to eq 20
         expect(chains.sample.keys).to contain_exactly('id', 'name')
@@ -33,7 +28,7 @@ RSpec.describe PlatformClient::Requests do
         expect(chains.last['id']).to eq 20
         expect(chains.last['name']).to eq 'Best Western'
 
-        check_pagination(data, { 'page' => 1, 'size' => 20 }, { 'page' => 2, 'size' => 20 })
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 20 }, { 'page' => 2, 'size' => 20 })
       end
     end
 
@@ -42,11 +37,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.chains(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::Chains
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('chains', 'pagination')
-
-        chains = data['chains']
+        chains = response.data
         expect(chains).to be_a Array
         expect(chains.size).to eq 5
         expect(chains.sample.keys).to contain_exactly('id', 'name')
@@ -55,7 +46,7 @@ RSpec.describe PlatformClient::Requests do
         expect(chains.last['id']).to eq 10
         expect(chains.last['name']).to eq 'Anasazi Service Corp'
 
-        check_pagination(data, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
       end
     end
   end
@@ -66,11 +57,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.property_categories
         expect(response).to be_a PlatformClient::Responses::PropertyCategories
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('property_categories', 'pagination')
-
-        property_categories = data['property_categories']
+        property_categories = response.data
         expect(property_categories).to be_a Array
         expect(property_categories.size).to eq 20
         expect(property_categories.sample.keys).to contain_exactly('id', 'name')
@@ -79,7 +66,7 @@ RSpec.describe PlatformClient::Requests do
         expect(property_categories.last['id']).to eq 21
         expect(property_categories.last['name']).to eq 'Tree house property'
 
-        check_pagination(data, { 'page' => 1, 'size' => 20 }, { 'page' => 2, 'size' => 20 })
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 20 }, { 'page' => 2, 'size' => 20 })
       end
     end
 
@@ -88,11 +75,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.property_categories(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::PropertyCategories
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('property_categories', 'pagination')
-
-        property_categories = data['property_categories']
+        property_categories = response.data
         expect(property_categories).to be_a Array
         expect(property_categories.size).to eq 5
         expect(property_categories.sample.keys).to contain_exactly('id', 'name')
@@ -101,7 +84,7 @@ RSpec.describe PlatformClient::Requests do
         expect(property_categories.last['id']).to eq 10
         expect(property_categories.last['name']).to eq 'Chalet'
 
-        check_pagination(data, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
       end
     end
   end
@@ -112,11 +95,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.room_categories
         expect(response).to be_a PlatformClient::Responses::RoomCategories
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('room_categories', 'pagination')
-
-        room_categories = data['room_categories']
+        room_categories = response.data
         expect(room_categories).to be_a Array
         expect(room_categories.size).to eq 14
         expect(room_categories.sample.keys).to contain_exactly('id', 'name')
@@ -125,7 +104,7 @@ RSpec.describe PlatformClient::Requests do
         expect(room_categories.last['id']).to eq 14
         expect(room_categories.last['name']).to eq 'Japanese Room'
 
-        check_pagination(data, { 'page' => 1, 'size' => 14 }, nil)
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 14 }, nil)
       end
     end
 
@@ -134,11 +113,7 @@ RSpec.describe PlatformClient::Requests do
         response = described_class.room_categories(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::RoomCategories
 
-        data = response.data
-        expect(data).to be_a Hash
-        expect(data.keys).to contain_exactly('room_categories', 'pagination')
-
-        room_categories = data['room_categories']
+        room_categories = response.data
         expect(room_categories).to be_a Array
         expect(room_categories.size).to eq 5
         expect(room_categories.sample.keys).to contain_exactly('id', 'name')
@@ -147,7 +122,7 @@ RSpec.describe PlatformClient::Requests do
         expect(room_categories.last['id']).to eq 10
         expect(room_categories.last['name']).to eq 'MotorHome'
 
-        check_pagination(data, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
       end
     end
   end
