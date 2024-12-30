@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/facilities?limit=5&page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"64493616ab7814047410481b43718a39"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 3b43ae22-797c-49fb-b6f7-72d01071c20a
+      X-Runtime:
+      - '0.012041'
+      X-Cloud-Trace-Context:
+      - b2615e85f80b1a2d19787bb537d42a09/11728400833438481502;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Mon, 30 Dec 2024 14:28:57 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '242'
+      Expires:
+      - Mon, 30 Dec 2024 14:28:57 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"facilities":[{"id":6,"name":"Gymnasium"},{"id":7,"name":"Massage
+        Room"},{"id":8,"name":"Sauna bath"},{"id":9,"name":"Sun bathing"},{"id":10,"name":"Call
+        car service"}],"pagination":{"current":{"page":2,"size":5},"next":{"page":3,"size":5}}}'
+  recorded_at: Mon, 30 Dec 2024 14:28:57 GMT
+recorded_with: VCR 6.3.1

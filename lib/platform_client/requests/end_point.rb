@@ -17,6 +17,11 @@ module PlatformClient
       include ActiveModel::Attributes
 
       ENDPOINTS = {
+        amenities: {
+          uri: '/api/amenities',
+          method: :get,
+          type: :content,
+        },
         chains: {
           uri: '/api/chains',
           method: :get,

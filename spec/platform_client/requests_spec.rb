@@ -13,6 +13,44 @@ RSpec.describe PlatformClient::Requests do
     expect(pagination['next']).to match(expected_next)
   end
 
+  describe '.amenities' do
+    context 'without specifying any filters', vcr: { cassette_name: 'content/amenities_default' } do
+      it 'returns a list of amenities from first page' do
+        response = described_class.amenities
+        expect(response).to be_a PlatformClient::Responses::Amenities
+
+        amenities = response.data
+        expect(amenities).to be_a Array
+        expect(amenities.size).to eq 12
+        expect(amenities.sample.keys).to contain_exactly('id', 'name')
+        expect(amenities.first['id']).to eq 1
+        expect(amenities.first['name']).to eq 'LCD TV'
+        expect(amenities.last['id']).to eq 12
+        expect(amenities.last['name']).to eq 'Umbrella'
+
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 12 }, nil)
+      end
+    end
+
+    context 'with specifying page and limit', vcr: { cassette_name: 'content/amenities_page_2_limit_5' } do
+      it 'returns a list of amenities from second page with 5 items' do
+        response = described_class.amenities(page: 2, limit: 5)
+        expect(response).to be_a PlatformClient::Responses::Amenities
+
+        amenities = response.data
+        expect(amenities).to be_a Array
+        expect(amenities.size).to eq 5
+        expect(amenities.sample.keys).to contain_exactly('id', 'name')
+        expect(amenities.first['id']).to eq 6
+        expect(amenities.first['name']).to eq 'diving'
+        expect(amenities.last['id']).to eq 10
+        expect(amenities.last['name']).to eq 'Aquatic Sports'
+
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+      end
+    end
+  end
+
   describe '.chains' do
     context 'without specifying any filters', vcr: { cassette_name: 'content/chains_default' } do
       it 'returns a list of chains from first page' do
@@ -45,6 +83,44 @@ RSpec.describe PlatformClient::Requests do
         expect(chains.first['name']).to eq 'AC Hotels'
         expect(chains.last['id']).to eq 10
         expect(chains.last['name']).to eq 'Anasazi Service Corp'
+
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+      end
+    end
+  end
+
+  describe '.facilities' do
+    context 'without specifying any filters', vcr: { cassette_name: 'content/facilities_default' } do
+      it 'returns a list of facilities from first page' do
+        response = described_class.facilities
+        expect(response).to be_a PlatformClient::Responses::Facilities
+
+        facilities = response.data
+        expect(facilities).to be_a Array
+        expect(facilities.size).to eq 12
+        expect(facilities.sample.keys).to contain_exactly('id', 'name')
+        expect(facilities.first['id']).to eq 1
+        expect(facilities.first['name']).to eq 'Simulated golf course'
+        expect(facilities.last['id']).to eq 12
+        expect(facilities.last['name']).to eq 'Outdoor swimming pool'
+
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 12 }, nil)
+      end
+    end
+
+    context 'with specifying page and limit', vcr: { cassette_name: 'content/facilities_page_2_limit_5' } do
+      it 'returns a list of facilities from second page with 5 items' do
+        response = described_class.facilities(page: 2, limit: 5)
+        expect(response).to be_a PlatformClient::Responses::Facilities
+
+        facilities = response.data
+        expect(facilities).to be_a Array
+        expect(facilities.size).to eq 5
+        expect(facilities.sample.keys).to contain_exactly('id', 'name')
+        expect(facilities.first['id']).to eq 6
+        expect(facilities.first['name']).to eq 'Gymnasium'
+        expect(facilities.last['id']).to eq 10
+        expect(facilities.last['name']).to eq 'Call car service'
 
         check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
       end
