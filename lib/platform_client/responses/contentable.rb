@@ -37,6 +37,11 @@ module PlatformClient
 
         # Returns the root key of the response JSON
         #
+        # It is derived from the response wrapper class name.
+        #
+        # For example, if the class name is 'PlatformClient::Responses::Chains',
+        # the root key will be 'chains'
+        #
         # @example for chains response below, the root key is 'chains'
         #
         # {
@@ -51,9 +56,10 @@ module PlatformClient
         #   }
         # }
         #
+        # Override it if the root key is different
         # @return [String]
         def root_key
-          raise NotImplementedError
+          self.class.name.demodulize.underscore
         end
       end
     end

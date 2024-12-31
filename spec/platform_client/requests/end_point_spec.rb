@@ -2,6 +2,14 @@
 
 RSpec.describe PlatformClient::Requests::EndPoint do
   describe '.find!' do
+    it 'returns the correct endpoint for amenities' do
+      endpoint = described_class.find!(:amenities)
+
+      expect(endpoint.uri).to eq('/api/amenities')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:content)
+    end
+
     it 'returns the correct endpoint for chains' do
       endpoint = described_class.find!(:chains)
 
@@ -14,6 +22,22 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       endpoint = described_class.find!(:facilities)
 
       expect(endpoint.uri).to eq('/api/facilities')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:content)
+    end
+
+    it 'returns the correct endpoint for property_categories' do
+      endpoint = described_class.find!(:property_categories)
+
+      expect(endpoint.uri).to eq('/api/property_categories')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:content)
+    end
+
+    it 'returns the correct endpoint for room_categories' do
+      endpoint = described_class.find!(:room_categories)
+
+      expect(endpoint.uri).to eq('/api/room_categories')
       expect(endpoint.method).to eq(:get)
       expect(endpoint.type).to eq(:content)
     end

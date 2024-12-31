@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/facilities
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"eb4f553ff92b827518c71d2596efc921"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - d23a7179-2eb9-47f9-9b27-575a63052866
+      X-Runtime:
+      - '0.094340'
+      X-Cloud-Trace-Context:
+      - 8dd52c9732859bcaf04abdcc7856735d/2350699377528599987;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Mon, 30 Dec 2024 14:28:56 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '476'
+      Expires:
+      - Mon, 30 Dec 2024 14:28:56 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"facilities":[{"id":1,"name":"Simulated golf course"},{"id":2,"name":"Shopping
+        mall"},{"id":3,"name":"Flower shop"},{"id":4,"name":"Clinic"},{"id":5,"name":"Hairdressing
+        and beauty center"},{"id":6,"name":"Gymnasium"},{"id":7,"name":"Massage Room"},{"id":8,"name":"Sauna
+        bath"},{"id":9,"name":"Sun bathing"},{"id":10,"name":"Call car service"},{"id":11,"name":"Shuttle
+        bus"},{"id":12,"name":"Outdoor swimming pool"}],"pagination":{"current":{"page":1,"size":12},"next":null}}'
+  recorded_at: Mon, 30 Dec 2024 14:28:56 GMT
+recorded_with: VCR 6.3.1
