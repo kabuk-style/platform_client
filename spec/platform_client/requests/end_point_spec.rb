@@ -26,6 +26,14 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       expect(endpoint.type).to eq(:content)
     end
 
+    it 'returns the correct endpoint for properties' do
+      endpoint = described_class.find!(:properties)
+
+      expect(endpoint.uri).to eq('/api/properties')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:content)
+    end
+
     it 'returns the correct endpoint for property_categories' do
       endpoint = described_class.find!(:property_categories)
 

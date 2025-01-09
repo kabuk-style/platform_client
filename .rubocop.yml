@@ -102,10 +102,12 @@ RSpec/ContextWording:
     - when
     - with
     - without
-RSpec/MultipleExpectations:
-  Enabled: false
 RSpec/ExampleLength:
   Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 5
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23

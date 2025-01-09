@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/properties?category_id%5B%5D&language=en-US&limit=5&page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"2212cf8bcb9187e89661004b7b456d47"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - bde1d4e4-40a0-4caa-b764-6ad974dfb7d5
+      X-Runtime:
+      - '0.070451'
+      X-Cloud-Trace-Context:
+      - 7659d53b8c35534fe7c986d82cca3acc/10533050885829875694;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Thu, 09 Jan 2025 10:27:58 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '2904'
+      Expires:
+      - Thu, 09 Jan 2025 10:27:58 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwcm9wZXJ0aWVzIjpbeyJjb2RlIjoiY3BleCIsIm5hbWUiOiJbVEVTVF0gQ2FuY2VsbGF0aW9uIHBvbGljeSBleHBpcmVkIiwiZGVzY3JpcHRpb24iOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImFkZHJlc3MiOiJBdi4gTGFzIEFjYWNpYXMsIENhcmFjYXMgMTA1MiIsImNpdHkiOiJEaXN0cml0byBDYXBpdGFsIiwiY291bnRyeV9jb2RlIjoiVkUiLCJzdGF0ZV9wcm92aW5jZSI6bnVsbCwicG9zdGFsX2NvZGUiOiIiLCJsYXRpdHVkZSI6IjEwLjQ5NDgzNiIsImxvbmdpdHVkZSI6Ii02Ni44ODEzNDgiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6bnVsbCwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOlsyMCwyOV0sImltYWdlcyI6W119LHsiY29kZSI6ImNueGwiLCJuYW1lIjoiW1RFU1RdIENhbmNlbGxhdGlvbiBmYWlsdXJlIGhvdGVsIiwiZGVzY3JpcHRpb24iOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImFkZHJlc3MiOiI3MjUgRi4gVG9ycmVzIFN0LCBQb2JsYWNpb24gRGlzdHJpY3QiLCJjaXR5IjoiRGF2YW8gQ2l0eSwgRGF2YW8gZGVsIFN1ciIsImNvdW50cnlfY29kZSI6IlBIIiwic3RhdGVfcHJvdmluY2UiOm51bGwsInBvc3RhbF9jb2RlIjoiIiwibGF0aXR1ZGUiOiI3LjA3Njk3MSIsImxvbmdpdHVkZSI6IjEyNS42MDUwMzEiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6bnVsbCwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOlszMCwyMF0sImltYWdlcyI6W119LHsiY29kZSI6Im5hdHIiLCJuYW1lIjoiW1RFU1RdIEhvdGVsIHJlcXVpcmVzIG5hdGlvbmFsaXR5IiwiZGVzY3JpcHRpb24iOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImFkZHJlc3MiOiJEb25nZGFuLCBCZWlqaW5nLCBEb25nY2hlbmciLCJjaXR5IjoiQmVpamluZyIsImNvdW50cnlfY29kZSI6IkNOIiwic3RhdGVfcHJvdmluY2UiOm51bGwsInBvc3RhbF9jb2RlIjoiIiwibGF0aXR1ZGUiOiIzOS45MTYwMjUiLCJsb25naXR1ZGUiOiIxMTYuNDE4NzU3Iiwid2Vic2l0ZSI6bnVsbCwiY2hlY2tfaW5fZnJvbV90aW1lIjpudWxsLCJjaGVja19vdXRfZnJvbV90aW1lIjpudWxsLCJjaGVja19pbl90b190aW1lIjpudWxsLCJjaGVja19vdXRfdG9fdGltZSI6bnVsbCwiZW1haWwiOiIiLCJwaG9uZSI6IiIsInJhdGluZyI6MC4wLCJwb2xpY3kiOm51bGwsImFjdGl2ZSI6dHJ1ZSwiY2F0ZWdvcnlfaWQiOjEsImNoYWluX2lkIjpudWxsLCJmYWNpbGl0aWVzIjpbMjgsMzQsMzBdLCJpbWFnZXMiOltdfSx7ImNvZGUiOiJmc3QxIiwibmFtZSI6IltURVNUXSBBbHdheXMgcmV0dXJuIGluIHNlY29uZCBwb2xsaW5nIiwiZGVzY3JpcHRpb24iOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImFkZHJlc3MiOiIxIEJvdWxldmFyZCBkZXMgUHlyw6luw6llcyIsImNpdHkiOiJwYXUiLCJjb3VudHJ5X2NvZGUiOiJGUiIsInN0YXRlX3Byb3ZpbmNlIjpudWxsLCJwb3N0YWxfY29kZSI6IjY0MDAwIiwibGF0aXR1ZGUiOiI0My4yOTI3NTIiLCJsb25naXR1ZGUiOiItMC4zNjgyMzYiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6bnVsbCwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOlszMyw3XSwiaW1hZ2VzIjpbXX0seyJjb2RlIjoiZnN0MiIsIm5hbWUiOiJbVEVTVF0gQWx3YXlzIHJldHVybiBhZnRlciAyIHNlY29uZCIsImRlc2NyaXB0aW9uIjoiPHA+PGI+Tk9URSEhPC9iPjxzcGFuPlRISVMgSVMgQSBURVNUIFBST1BFUlRZPC9zcGFuPjwvcD4iLCJhZGRyZXNzIjoiMiBCb3VsZXZhcmQgZGVzIFB5csOpbsOpZXMiLCJjaXR5IjoicGF1IiwiY291bnRyeV9jb2RlIjoiRlIiLCJzdGF0ZV9wcm92aW5jZSI6bnVsbCwicG9zdGFsX2NvZGUiOiI2NDAwMCIsImxhdGl0dWRlIjoiNDMuMjkyOTk3IiwibG9uZ2l0dWRlIjoiLTAuMzY3MDQiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6bnVsbCwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOls3LDMwLDM4XSwiaW1hZ2VzIjpbXX1dLCJxdWVyeSI6eyJwYWdlIjoyLCJsaW1pdCI6NSwibGFuZ3VhZ2UiOiJlbi1VUyIsImNhdGVnb3J5X2lkIjpbXX0sInBhZ2luYXRpb24iOnsiY3VycmVudCI6eyJwYWdlIjoyLCJzaXplIjo1fSwibmV4dCI6eyJwYWdlIjozLCJzaXplIjo1fX19
+  recorded_at: Thu, 09 Jan 2025 10:28:00 GMT
+recorded_with: VCR 6.3.1

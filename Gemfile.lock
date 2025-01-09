@@ -119,6 +119,8 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.1)
+    shoulda-matchers (6.4.0)
+      activesupport (>= 5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.2)
@@ -143,6 +145,7 @@ DEPENDENCIES
   rubocop (~> 1.69)
   rubocop-performance (~> 1.23)
   rubocop-rspec (~> 3.3)
+  shoulda-matchers (~> 6.0)
   vcr (~> 6.3)
   webmock (~> 3.24)
 

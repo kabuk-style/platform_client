@@ -20,6 +20,7 @@ module PlatformClient
             limit:,
           }.compact
         end
+        alias_method :pagination_params, :params
       end
     end
   end

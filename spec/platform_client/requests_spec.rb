@@ -127,6 +127,62 @@ RSpec.describe PlatformClient::Requests do
     end
   end
 
+  describe '.properties' do
+    context 'without specifying any filters', vcr: { cassette_name: 'content/properties_default' } do
+      it 'returns a list of properties from first page' do
+        response = described_class.properties
+        expect(response).to be_a PlatformClient::Responses::Properties
+
+        properties = response.data
+
+        expect(properties).to be_a Array
+        expect(properties.size).to eq 21
+        expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
+        expect(properties.first['code']).to eq 'rndm'
+        expect(properties.first['name']).to eq "[TEST] Random property, generic behaviour A !@\#$%^&*-_=+\\/.,;'\""
+        expect(properties.last['code']).to eq 'wijn'
+        expect(properties.last['name']).to eq '[TEST] Case sensitive B'
+
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 21 }, nil)
+      end
+    end
+
+    context 'with specifying page and limit', vcr: { cassette_name: 'content/properties_page_2_limit_5' } do
+      it 'returns a list of properties from second page with 5 items' do
+        response = described_class.properties(page: 2, limit: 5)
+        expect(response).to be_a PlatformClient::Responses::Properties
+
+        properties = response.data
+        expect(properties).to be_a Array
+        expect(properties.size).to eq 5
+        expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
+        expect(properties.first['code']).to eq 'cpex'
+        expect(properties.first['name']).to eq '[TEST] Cancellation policy expired'
+        expect(properties.last['code']).to eq 'fst2'
+        expect(properties.last['name']).to eq '[TEST] Always return after 2 second'
+
+        check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
+      end
+    end
+
+    context 'with specifying country code', vcr: { cassette_name: 'content/properties_country_code_FR_categories_1_22' } do
+      it 'returns a list of properties from first page filtered by country code' do
+        response = described_class.properties(country_code: 'FR', category_id: [1, 22])
+        expect(response).to be_a PlatformClient::Responses::Properties
+
+        properties = response.data
+
+        expect(properties).to be_a Array
+        expect(properties.size).to eq 3
+        expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
+
+        expect(properties.map { _1['country_code'] }.tally).to match('FR' => 3)
+        expect(properties.map { _1['category_id'] }.flatten.tally).to match(1 => 3)
+        expect(properties.map { _1['code'] }).to match %w[fst1 fst2 fst4]
+      end
+    end
+  end
+
   describe '.property_categories' do
     context 'without specifying any filters', vcr: { cassette_name: 'content/property_categories_default' } do
       it 'returns a list of property categories from first page' do
