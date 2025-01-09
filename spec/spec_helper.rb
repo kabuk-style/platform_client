@@ -2,6 +2,7 @@
 
 require 'platform_client'
 require 'support/vcr_setup'
+require 'shoulda-matchers'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,5 +13,13 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+
+    with.library :active_model
   end
 end

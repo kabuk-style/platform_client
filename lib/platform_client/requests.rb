@@ -6,6 +6,7 @@ require 'platform_client/requests/paginated'
 require 'platform_client/requests/amenities'
 require 'platform_client/requests/chains'
 require 'platform_client/requests/facilities'
+require 'platform_client/requests/properties'
 require 'platform_client/requests/property_categories'
 require 'platform_client/requests/room_categories'
 
@@ -41,6 +42,19 @@ module PlatformClient
       # @return [PlatformClient::Responses::Facilities]
       def facilities(page: nil, limit: nil)
         Facilities.call(page:, limit:)
+      end
+
+      # Get list of properties
+      #
+      # @param page [Integer] Page number, pass nil to get the first page, default is nil to get the first page
+      # @param limit [Integer] Number of items per page, pass nil to get the default number of items, default is nil to get the default number of items
+      # @param country_code [String] ISO 3166-1 alpha-2 country code to filter properties by, default is nil to get properties from all countries
+      # @param category_id [Array<String>] Array of property category IDs(see +.property_categories+) to filter properties by, default is [] to get properties from all categories
+      # @param language [String] Language code to get the response in, default is 'en-US'
+      #
+      # @return [PlatformClient::Responses::Properties]
+      def properties(page: nil, limit: nil, country_code: nil, category_id: [], language: PlatformClient::DEFAULT_LANGUAGE)
+        Properties.call(page:, limit:, country_code:, category_id:, language:)
       end
 
       # Get list of property categories

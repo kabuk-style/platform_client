@@ -32,6 +32,11 @@ module PlatformClient
           method: :get,
           type: :content,
         },
+        properties: {
+          uri: '/api/properties',
+          method: :get,
+          type: :content,
+        },
         property_categories: {
           uri: '/api/property_categories',
           method: :get,
