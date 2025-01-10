@@ -139,17 +139,17 @@ RSpec.describe PlatformClient::Requests do
         expect(properties.size).to eq 21
         expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
         expect(properties.first['code']).to eq 'rndm'
-        expect(properties.first['name']).to eq "[TEST] Random property, generic behaviour A !@\#$%^&*-_=+\\/.,;'\""
+        expect(properties.first['name']).to match('en-US' => "[TEST] Random property, generic behaviour A !@\#$%^&*-_=+\\/.,;'\"")
         expect(properties.last['code']).to eq 'wijn'
-        expect(properties.last['name']).to eq '[TEST] Case sensitive B'
+        expect(properties.last['name']).to match('en-US' => '[TEST] Case sensitive B')
 
         check_pagination(response.pagination, { 'page' => 1, 'size' => 21 }, nil)
       end
     end
 
-    context 'with specifying page and limit', vcr: { cassette_name: 'content/properties_page_2_limit_5' } do
+    context 'with specifying page and limit along with language other than default', vcr: { cassette_name: 'content/properties_page_2_limit_5_japanese' } do
       it 'returns a list of properties from second page with 5 items' do
-        response = described_class.properties(page: 2, limit: 5)
+        response = described_class.properties(page: 2, limit: 5, language: 'ja-JP')
         expect(response).to be_a PlatformClient::Responses::Properties
 
         properties = response.data
@@ -157,9 +157,9 @@ RSpec.describe PlatformClient::Requests do
         expect(properties.size).to eq 5
         expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
         expect(properties.first['code']).to eq 'cpex'
-        expect(properties.first['name']).to eq '[TEST] Cancellation policy expired'
+        expect(properties.first['name']).to match('en-US' => '[TEST] Cancellation policy expired', 'ja-JP' => '【TEST】キャンセルポリシーが期限を切りました')
         expect(properties.last['code']).to eq 'fst2'
-        expect(properties.last['name']).to eq '[TEST] Always return after 2 second'
+        expect(properties.last['name']).to match('en-US' => '[TEST] Always return after 2 second', 'ja-JP' => '【TEST】いつも2秒後に戻る')
 
         check_pagination(response.pagination, { 'page' => 2, 'size' => 5 }, { 'page' => 3, 'size' => 5 })
       end

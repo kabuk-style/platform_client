@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/properties?category_id%5B%5D&language=ja-JP&limit=5&page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"ed6bdb080829cebb7c0c0ae1a5b53e18"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ee298af9-2bb7-4a67-a2f3-a4238e6685fa
+      X-Runtime:
+      - '0.036657'
+      X-Cloud-Trace-Context:
+      - d30bf7d28d090ad16dd0236f2ec33103/9811679024814424667;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Fri, 10 Jan 2025 12:28:00 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '3962'
+      Expires:
+      - Fri, 10 Jan 2025 12:28:00 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwcm9wZXJ0aWVzIjpbeyJjb2RlIjoiY3BleCIsIm5hbWUiOnsiZW4tVVMiOiJbVEVTVF0gQ2FuY2VsbGF0aW9uIHBvbGljeSBleHBpcmVkIiwiamEtSlAiOiLjgJBURVNU44CR44Kt44Oj44Oz44K744Or44Od44Oq44K344O844GM5pyf6ZmQ44KS5YiH44KK44G+44GX44GfIn0sImRlc2NyaXB0aW9uIjp7ImVuLVVTIjoiPHA+PGI+Tk9URSEhPC9iPjxzcGFuPlRISVMgSVMgQSBURVNUIFBST1BFUlRZPC9zcGFuPjwvcD4iLCJqYS1KUCI6IuazqOaEjyEhIOOBk+OCjOOBr+ODhuOCueODiOODl+ODreODkeODhuOCo+OBp+OBmSBcbiJ9LCJhZGRyZXNzIjp7ImVuLVVTIjoiQXYuIExhcyBBY2FjaWFzLCBDYXJhY2FzIDEwNTIiLCJqYS1KUCI6IkF2LiBMYXMgQWNhY2lhcywgQ2FyYWNhcyAxMDUyIn0sImNpdHkiOiJEaXN0cml0byBDYXBpdGFsIiwiY291bnRyeV9jb2RlIjoiVkUiLCJzdGF0ZV9wcm92aW5jZSI6bnVsbCwicG9zdGFsX2NvZGUiOiIiLCJsYXRpdHVkZSI6IjEwLjQ5NDgzNiIsImxvbmdpdHVkZSI6Ii02Ni44ODEzNDgiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6eyJlbi1VUyI6bnVsbCwiamEtSlAiOm51bGx9LCJhY3RpdmUiOnRydWUsImNhdGVnb3J5X2lkIjoxLCJjaGFpbl9pZCI6bnVsbCwiZmFjaWxpdGllcyI6WzIwLDI5XSwiaW1hZ2VzIjpbXX0seyJjb2RlIjoiY254bCIsIm5hbWUiOnsiZW4tVVMiOiJbVEVTVF0gQ2FuY2VsbGF0aW9uIGZhaWx1cmUgaG90ZWwiLCJqYS1KUCI6IuOAkFRFU1TjgJHjgq3jg6Pjg7Pjgrvjg6vlpLHmlZfjg5vjg4bjg6sifSwiZGVzY3JpcHRpb24iOnsiZW4tVVMiOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImphLUpQIjoi5rOo5oSPISEg44GT44KM44Gv44OG44K544OI44OX44Ot44OR44OG44Kj44Gn44GZIFxuIn0sImFkZHJlc3MiOnsiZW4tVVMiOiI3MjUgRi4gVG9ycmVzIFN0LCBQb2JsYWNpb24gRGlzdHJpY3QiLCJqYS1KUCI6IjcyNSBGLiBUb3JyZXMgU3QsIFBvYmxhY2lvbiBEaXN0cmljdCJ9LCJjaXR5IjoiRGF2YW8gQ2l0eSwgRGF2YW8gZGVsIFN1ciIsImNvdW50cnlfY29kZSI6IlBIIiwic3RhdGVfcHJvdmluY2UiOm51bGwsInBvc3RhbF9jb2RlIjoiIiwibGF0aXR1ZGUiOiI3LjA3Njk3MSIsImxvbmdpdHVkZSI6IjEyNS42MDUwMzEiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6eyJlbi1VUyI6bnVsbCwiamEtSlAiOm51bGx9LCJhY3RpdmUiOnRydWUsImNhdGVnb3J5X2lkIjoxLCJjaGFpbl9pZCI6bnVsbCwiZmFjaWxpdGllcyI6WzMwLDIwXSwiaW1hZ2VzIjpbXX0seyJjb2RlIjoibmF0ciIsIm5hbWUiOnsiZW4tVVMiOiJbVEVTVF0gSG90ZWwgcmVxdWlyZXMgbmF0aW9uYWxpdHkiLCJqYS1KUCI6IuOAkFRFU1TjgJHjg5vjg4bjg6vjgavjga/lm73nsY3jgYzlv4XopoHjgafjgZkifSwiZGVzY3JpcHRpb24iOnsiZW4tVVMiOiI8cD48Yj5OT1RFISE8L2I+PHNwYW4+VEhJUyBJUyBBIFRFU1QgUFJPUEVSVFk8L3NwYW4+PC9wPiIsImphLUpQIjoi5rOo5oSPISEg44GT44KM44Gv44OG44K544OI44OX44Ot44OR44OG44Kj44Gn44GZIFxuIn0sImFkZHJlc3MiOnsiZW4tVVMiOiJEb25nZGFuLCBCZWlqaW5nLCBEb25nY2hlbmciLCJqYS1KUCI6IkRvbmdkYW4sIEJlaWppbmcsIERvbmdjaGVuZyJ9LCJjaXR5IjoiQmVpamluZyIsImNvdW50cnlfY29kZSI6IkNOIiwic3RhdGVfcHJvdmluY2UiOm51bGwsInBvc3RhbF9jb2RlIjoiIiwibGF0aXR1ZGUiOiIzOS45MTYwMjUiLCJsb25naXR1ZGUiOiIxMTYuNDE4NzU3Iiwid2Vic2l0ZSI6bnVsbCwiY2hlY2tfaW5fZnJvbV90aW1lIjpudWxsLCJjaGVja19vdXRfZnJvbV90aW1lIjpudWxsLCJjaGVja19pbl90b190aW1lIjpudWxsLCJjaGVja19vdXRfdG9fdGltZSI6bnVsbCwiZW1haWwiOiIiLCJwaG9uZSI6IiIsInJhdGluZyI6MC4wLCJwb2xpY3kiOnsiZW4tVVMiOm51bGwsImphLUpQIjpudWxsfSwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOlsyOCwzNCwzMF0sImltYWdlcyI6W119LHsiY29kZSI6ImZzdDEiLCJuYW1lIjp7ImVuLVVTIjoiW1RFU1RdIEFsd2F5cyByZXR1cm4gaW4gc2Vjb25kIHBvbGxpbmciLCJqYS1KUCI6IuOAkFRFU1TjgJHjgYTjgaTjgoIy5Zue55uu44Gu5oqV56Wo44Gn5oi744KLIn0sImRlc2NyaXB0aW9uIjp7ImVuLVVTIjoiPHA+PGI+Tk9URSEhPC9iPjxzcGFuPlRISVMgSVMgQSBURVNUIFBST1BFUlRZPC9zcGFuPjwvcD4iLCJqYS1KUCI6IuazqOaEjyEhIOOBk+OCjOOBr+ODhuOCueODiOODl+ODreODkeODhuOCo+OBp+OBmSBcbiJ9LCJhZGRyZXNzIjp7ImVuLVVTIjoiMSBCb3VsZXZhcmQgZGVzIFB5csOpbsOpZXMiLCJqYS1KUCI6IjEgQm91bGV2YXJkIGRlcyBQeXLDqW7DqWVzIn0sImNpdHkiOiJwYXUiLCJjb3VudHJ5X2NvZGUiOiJGUiIsInN0YXRlX3Byb3ZpbmNlIjpudWxsLCJwb3N0YWxfY29kZSI6IjY0MDAwIiwibGF0aXR1ZGUiOiI0My4yOTI3NTIiLCJsb25naXR1ZGUiOiItMC4zNjgyMzYiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6eyJlbi1VUyI6bnVsbCwiamEtSlAiOm51bGx9LCJhY3RpdmUiOnRydWUsImNhdGVnb3J5X2lkIjoxLCJjaGFpbl9pZCI6bnVsbCwiZmFjaWxpdGllcyI6WzMzLDddLCJpbWFnZXMiOltdfSx7ImNvZGUiOiJmc3QyIiwibmFtZSI6eyJlbi1VUyI6IltURVNUXSBBbHdheXMgcmV0dXJuIGFmdGVyIDIgc2Vjb25kIiwiamEtSlAiOiLjgJBURVNU44CR44GE44Gk44KCMuenkuW+jOOBq+aIu+OCiyJ9LCJkZXNjcmlwdGlvbiI6eyJlbi1VUyI6IjxwPjxiPk5PVEUhITwvYj48c3Bhbj5USElTIElTIEEgVEVTVCBQUk9QRVJUWTwvc3Bhbj48L3A+IiwiamEtSlAiOiLms6jmhI8hISDjgZPjgozjga/jg4bjgrnjg4jjg5fjg63jg5Hjg4bjgqPjgafjgZkgXG4ifSwiYWRkcmVzcyI6eyJlbi1VUyI6IjIgQm91bGV2YXJkIGRlcyBQeXLDqW7DqWVzIiwiamEtSlAiOiIyIEJvdWxldmFyZCBkZXMgUHlyw6luw6llcyJ9LCJjaXR5IjoicGF1IiwiY291bnRyeV9jb2RlIjoiRlIiLCJzdGF0ZV9wcm92aW5jZSI6bnVsbCwicG9zdGFsX2NvZGUiOiI2NDAwMCIsImxhdGl0dWRlIjoiNDMuMjkyOTk3IiwibG9uZ2l0dWRlIjoiLTAuMzY3MDQiLCJ3ZWJzaXRlIjpudWxsLCJjaGVja19pbl9mcm9tX3RpbWUiOm51bGwsImNoZWNrX291dF9mcm9tX3RpbWUiOm51bGwsImNoZWNrX2luX3RvX3RpbWUiOm51bGwsImNoZWNrX291dF90b190aW1lIjpudWxsLCJlbWFpbCI6IiIsInBob25lIjoiIiwicmF0aW5nIjowLjAsInBvbGljeSI6eyJlbi1VUyI6bnVsbCwiamEtSlAiOm51bGx9LCJhY3RpdmUiOnRydWUsImNhdGVnb3J5X2lkIjoxLCJjaGFpbl9pZCI6bnVsbCwiZmFjaWxpdGllcyI6WzcsMzAsMzhdLCJpbWFnZXMiOltdfV0sInF1ZXJ5Ijp7InBhZ2UiOjIsImxpbWl0Ijo1LCJsYW5ndWFnZSI6ImphLUpQIiwiY2F0ZWdvcnlfaWQiOltdfSwicGFnaW5hdGlvbiI6eyJjdXJyZW50Ijp7InBhZ2UiOjIsInNpemUiOjV9LCJuZXh0Ijp7InBhZ2UiOjMsInNpemUiOjV9fX0=
+  recorded_at: Fri, 10 Jan 2025 12:28:00 GMT
+recorded_with: VCR 6.3.1
