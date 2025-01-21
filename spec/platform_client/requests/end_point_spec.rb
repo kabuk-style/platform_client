@@ -49,5 +49,13 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       expect(endpoint.method).to eq(:get)
       expect(endpoint.type).to eq(:content)
     end
+
+    it 'returns the correct endpoint for rate' do
+      endpoint = described_class.find!(:rate)
+
+      expect(endpoint.uri).to eq('/api/check_rate')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:shopping)
+    end
   end
 end
