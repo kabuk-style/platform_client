@@ -87,7 +87,7 @@ module PlatformClient
       # @param check_out_date [String] Check-out date in 'YYYY-MM-DD' format
       # @param adults_count [Integer] Number of adults, default is 1
       #
-      # @return [PlatformClient::Responses::Rates]
+      # @return [PlatformClient::Responses::Rate]
       def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1)
         Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:)
       end

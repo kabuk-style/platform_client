@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module PlatformClient
-  DEFAULT_LANGUAGE = 'en-US'
-  JAPANESE_LANGUAGE = 'ja-JP'
-  SUPPORTED_LANGUAGES = [DEFAULT_LANGUAGE, JAPANESE_LANGUAGE].freeze
-
   module Requests
     # Wrapper for the /api/check_rate endpoint
     class Rate < Base
@@ -17,12 +13,6 @@ module PlatformClient
       validates :property_code, :room_code, presence: true
       validates :check_in_date, :check_out_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: 'must be in YYYY-MM-DD format' }
       validates :adults_count, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }, allow_nil: true
-
-      private
-
-      def params
-        attributes.compact_blank
-      end
     end
   end
 end
