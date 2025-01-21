@@ -9,6 +9,7 @@ require 'platform_client/requests/facilities'
 require 'platform_client/requests/properties'
 require 'platform_client/requests/property_categories'
 require 'platform_client/requests/room_categories'
+require 'platform_client/requests/booking'
 
 module PlatformClient
   # Wrapper over requests
@@ -76,6 +77,20 @@ module PlatformClient
       # @return [PlatformClient::Responses::RoomCategories]
       def room_categories(page: nil, limit: nil)
         RoomCategories.call(page:, limit:)
+      end
+
+      # Create the booking for a room
+      #
+      # @param rate_key [String] Rate key of the room to book recieved from the +.check_rate+ endpoint
+      # @param client_reference [String] Unique Client reference for the booking
+      # @param first_name [String] First name of the guest
+      # @param last_name [String] Last name of the guest
+      # @param nationality [String] Nationality of the guest
+      # @param contact_number [String] Contact number of the guest
+      #
+      # @return [PlatformClient::Responses::Booking]
+      def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:) # rubocop:disable Metrics/ParameterLists
+        Booking.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:)
       end
     end
   end

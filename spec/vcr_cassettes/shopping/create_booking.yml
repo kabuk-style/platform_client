@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://kabuk-platform.com/api/bookings
+    body:
+      encoding: UTF-8
+      string: '{"rate_key":"db470bf0-90c5-4bf8-9a3f-dd52b0f94798","client_reference":"XYZ123","first_name":"John","last_name":"Doe","nationality":"JP","contact_number":"123456"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"46ebdb35c9b374b2c43b24715c83ea9a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 5c53da5d-d2c0-4700-8daf-00460c636e5c
+      X-Runtime:
+      - '1.229178'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
+        sql.active_record;dur=17.61, start_transaction.active_record;dur=0.00, instantiation.active_record;dur=4.10,
+        transaction.active_record;dur=1160.79, process_action.action_controller;dur=1210.96
+      Content-Length:
+      - '773'
+    body:
+      encoding: UTF-8
+      string: '{"client_reference":"XYZ123","status":"pending","rate":{"rate_key":"db470bf0-90c5-4bf8-9a3f-dd52b0f94798","net":"10795.72","available_rooms":null,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"This
+        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed","check_in_date":"2025-01-24","check_out_date":"2025-01-26","room_name":"Harmony
+        Johnson I","room_code":"104","check_in_instructions":null,"hotel_fees":{"optional
+        service car":{"value":100,"currency":"USD"},"resort fee per head upon check-in":{"value":1,"currency":"USD"}},"cancellation_policies":[{"date_from":"2025-01-21","date_to":"2025-01-25","percent":0.0,"amount":"0.0"}]},"guests":[{"first_name":"John","last_name":"Doe","nationality":"JP","contact_number":"123456"}]}'
+  recorded_at: Tue, 21 Jan 2025 19:09:05 GMT
+recorded_with: VCR 6.3.1
