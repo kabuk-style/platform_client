@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://kabuk-platform.com/api/properties?category_id%5B%5D&language=en-US
+    uri: https://kabuk-platform.com/api/properties?language=en-US
     body:
       encoding: US-ASCII
       string: ''

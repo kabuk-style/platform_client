@@ -49,12 +49,13 @@ module PlatformClient
       # @param page [Integer] Page number, pass nil to get the first page, default is nil to get the first page
       # @param limit [Integer] Number of items per page, pass nil to get the default number of items, default is nil to get the default number of items
       # @param country_code [String] ISO 3166-1 alpha-2 country code to filter properties by, default is nil to get properties from all countries
-      # @param category_id [Array<String>] Array of property category IDs(see +.property_categories+) to filter properties by, default is [] to get properties from all categories
+      # @param category_ids [Array<String>] Array of property category IDs(see +.property_categories+) to filter properties by, default is [] to get properties from all categories
+      # @param codes [Array<String>] Array of property codes to filter properties by, default is [] to get properties by all codes
       # @param language [String] Language code to get the response in, default is 'en-US'
       #
       # @return [PlatformClient::Responses::Properties]
-      def properties(page: nil, limit: nil, country_code: nil, category_id: [], language: PlatformClient::DEFAULT_LANGUAGE)
-        Properties.call(page:, limit:, country_code:, category_id:, language:)
+      def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], language: PlatformClient::DEFAULT_LANGUAGE)
+        Properties.call(page:, limit:, country_code:, category_ids:, codes:, language:)
       end
 
       # Get list of property categories

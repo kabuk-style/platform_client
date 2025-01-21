@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/properties?category_ids%5B%5D=1&category_ids%5B%5D=22&codes%5B%5D=fst1&codes%5B%5D=fst4&country_code=FR&language=en-US
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"9c03d217cbd3ebef184fcdcb22a6abc4"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - f8fe5cb7-0e33-4032-9c4f-f127f4e36b20
+      X-Runtime:
+      - '0.041547'
+      X-Cloud-Trace-Context:
+      - 22666260f32eefaebbf41c5eb617705e/2282476537378279275;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Tue, 21 Jan 2025 08:20:26 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '1352'
+      Expires:
+      - Tue, 21 Jan 2025 08:20:26 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwcm9wZXJ0aWVzIjpbeyJjb2RlIjoiZnN0MSIsIm5hbWUiOnsiZW4tVVMiOiJbVEVTVF0gQWx3YXlzIHJldHVybiBpbiBzZWNvbmQgcG9sbGluZyJ9LCJkZXNjcmlwdGlvbiI6eyJlbi1VUyI6IjxwPjxiPk5PVEUhITwvYj48c3Bhbj5USElTIElTIEEgVEVTVCBQUk9QRVJUWTwvc3Bhbj48L3A+In0sImFkZHJlc3MiOnsiZW4tVVMiOiIxIEJvdWxldmFyZCBkZXMgUHlyw6luw6llcyJ9LCJjaXR5IjoicGF1IiwiY291bnRyeV9jb2RlIjoiRlIiLCJzdGF0ZV9wcm92aW5jZSI6bnVsbCwicG9zdGFsX2NvZGUiOiI2NDAwMCIsImxhdGl0dWRlIjoiNDMuMjkyNzUyIiwibG9uZ2l0dWRlIjoiLTAuMzY4MjM2Iiwid2Vic2l0ZSI6bnVsbCwiY2hlY2tfaW5fZnJvbV90aW1lIjpudWxsLCJjaGVja19vdXRfZnJvbV90aW1lIjpudWxsLCJjaGVja19pbl90b190aW1lIjpudWxsLCJjaGVja19vdXRfdG9fdGltZSI6bnVsbCwiZW1haWwiOiIiLCJwaG9uZSI6IiIsInJhdGluZyI6MC4wLCJwb2xpY3kiOnsiZW4tVVMiOm51bGx9LCJhY3RpdmUiOnRydWUsImNhdGVnb3J5X2lkIjoxLCJjaGFpbl9pZCI6bnVsbCwiZmFjaWxpdGllcyI6WzMzLDddLCJpbWFnZXMiOltdfSx7ImNvZGUiOiJmc3Q0IiwibmFtZSI6eyJlbi1VUyI6IltURVNUXSBBbHdheXMgcmV0dXJuIGFmdGVyIDQgc2Vjb25kIn0sImRlc2NyaXB0aW9uIjp7ImVuLVVTIjoiPHA+PGI+Tk9URSEhPC9iPjxzcGFuPlRISVMgSVMgQSBURVNUIFBST1BFUlRZPC9zcGFuPjwvcD4ifSwiYWRkcmVzcyI6eyJlbi1VUyI6IjQgQm91bGV2YXJkIGRlcyBQeXLDqW7DqWVzIn0sImNpdHkiOiJwYXUiLCJjb3VudHJ5X2NvZGUiOiJGUiIsInN0YXRlX3Byb3ZpbmNlIjpudWxsLCJwb3N0YWxfY29kZSI6IjY0MDAwIiwibGF0aXR1ZGUiOiI0My4yOTM0OTUiLCJsb25naXR1ZGUiOiItMC4zNjc5OCIsIndlYnNpdGUiOm51bGwsImNoZWNrX2luX2Zyb21fdGltZSI6bnVsbCwiY2hlY2tfb3V0X2Zyb21fdGltZSI6bnVsbCwiY2hlY2tfaW5fdG9fdGltZSI6bnVsbCwiY2hlY2tfb3V0X3RvX3RpbWUiOm51bGwsImVtYWlsIjoiIiwicGhvbmUiOiIiLCJyYXRpbmciOjAuMCwicG9saWN5Ijp7ImVuLVVTIjpudWxsfSwiYWN0aXZlIjp0cnVlLCJjYXRlZ29yeV9pZCI6MSwiY2hhaW5faWQiOm51bGwsImZhY2lsaXRpZXMiOlszNCwyMSwzMF0sImltYWdlcyI6W119XSwicXVlcnkiOnsibGltaXQiOjEwMCwiY2F0ZWdvcnlfaWRzIjpbIjEiLCIyMiJdLCJjb2RlcyI6WyJmc3QxIiwiZnN0NCJdLCJjb3VudHJ5X2NvZGUiOiJGUiIsImxhbmd1YWdlIjoiZW4tVVMifSwicGFnaW5hdGlvbiI6eyJjdXJyZW50Ijp7InBhZ2UiOjEsInNpemUiOjJ9LCJuZXh0IjpudWxsfX0=
+  recorded_at: Tue, 21 Jan 2025 08:20:26 GMT
+recorded_with: VCR 6.3.1

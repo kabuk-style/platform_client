@@ -165,20 +165,20 @@ RSpec.describe PlatformClient::Requests do
       end
     end
 
-    context 'with specifying country code', vcr: { cassette_name: 'content/properties_country_code_FR_categories_1_22' } do
+    context 'with specifying country code', vcr: { cassette_name: 'content/properties_country_code_FR_categories_1_22_code_code_fst1_fst4' } do
       it 'returns a list of properties from first page filtered by country code' do
-        response = described_class.properties(country_code: 'FR', category_id: [1, 22])
+        response = described_class.properties(country_code: 'FR', category_ids: [1, 22], codes: %w[fst1 fst4])
         expect(response).to be_a PlatformClient::Responses::Properties
 
         properties = response.data
 
         expect(properties).to be_a Array
-        expect(properties.size).to eq 3
+        expect(properties.size).to eq 2
         expect(properties.sample.keys).to contain_exactly('code', 'name', 'description', 'address', 'city', 'country_code', 'state_province', 'postal_code', 'latitude', 'longitude', 'website', 'check_in_from_time', 'check_out_from_time', 'check_in_to_time', 'check_out_to_time', 'email', 'phone', 'rating', 'policy', 'active', 'category_id', 'chain_id', 'facilities', 'images')
 
-        expect(properties.map { _1['country_code'] }.tally).to match('FR' => 3)
-        expect(properties.map { _1['category_id'] }.flatten.tally).to match(1 => 3)
-        expect(properties.map { _1['code'] }).to match %w[fst1 fst2 fst4]
+        expect(properties.map { _1['country_code'] }.tally).to match('FR' => 2)
+        expect(properties.map { _1['category_id'] }.flatten.tally).to match(1 => 2)
+        expect(properties.map { _1['code'] }).to match %w[fst1 fst4]
       end
     end
   end

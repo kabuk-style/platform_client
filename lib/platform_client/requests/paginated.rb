@@ -18,7 +18,7 @@ module PlatformClient
           {
             page:,
             limit:,
-          }.compact
+          }.compact_blank
         end
         alias_method :pagination_params, :params
       end

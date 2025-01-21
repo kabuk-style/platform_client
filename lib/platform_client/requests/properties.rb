@@ -11,7 +11,8 @@ module PlatformClient
       include PlatformClient::Requests::Paginated
 
       attribute :country_code, :string
-      attribute :category_id, array: :string
+      attribute :category_ids, array: :string
+      attribute :codes, array: :string
       attribute :language, :string, default: PlatformClient::DEFAULT_LANGUAGE
 
       validates :language, inclusion: { in: PlatformClient::SUPPORTED_LANGUAGES }, allow_nil: true
@@ -23,9 +24,10 @@ module PlatformClient
       def params
         pagination_params.merge(
           country_code:,
-          category_id:,
+          category_ids:,
+          codes:,
           language:
-        ).compact
+        ).compact_blank
       end
     end
   end
