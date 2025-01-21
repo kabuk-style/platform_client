@@ -54,7 +54,7 @@ module PlatformClient
       # @param language [String] Language code to get the response in, default is 'en-US'
       #
       # @return [PlatformClient::Responses::Properties]
-      def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], language: PlatformClient::DEFAULT_LANGUAGE)
+      def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], language: PlatformClient::DEFAULT_LANGUAGE) # rubocop:disable Metrics/ParameterLists
         Properties.call(page:, limit:, country_code:, category_ids:, codes:, language:)
       end
 
