@@ -59,7 +59,7 @@ module PlatformClient
       end
 
       def params
-        raise NotImplementedError
+        attributes.compact_blank
       end
 
       def uri_params

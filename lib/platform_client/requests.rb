@@ -9,6 +9,7 @@ require 'platform_client/requests/facilities'
 require 'platform_client/requests/properties'
 require 'platform_client/requests/property_categories'
 require 'platform_client/requests/room_categories'
+require 'platform_client/requests/rate'
 
 module PlatformClient
   # Wrapper over requests
@@ -76,6 +77,19 @@ module PlatformClient
       # @return [PlatformClient::Responses::RoomCategories]
       def room_categories(page: nil, limit: nil)
         RoomCategories.call(page:, limit:)
+      end
+
+      # Check rate for a property room
+      #
+      # @param property_code [String] Property code
+      # @param room_code [String] Room code
+      # @param check_in_date [String] Check-in date in 'YYYY-MM-DD' format
+      # @param check_out_date [String] Check-out date in 'YYYY-MM-DD' format
+      # @param adults_count [Integer] Number of adults, default is 1
+      #
+      # @return [PlatformClient::Responses::Rate]
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1)
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:)
       end
     end
   end
