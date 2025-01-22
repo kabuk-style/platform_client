@@ -259,6 +259,25 @@ RSpec.describe PlatformClient::Requests do
     end
   end
 
+  describe '.check_rate' do
+    context 'with valid parameters', vcr: { cassette_name: 'shopping/check_rate' } do
+      it 'returns the rate for the specified property room' do
+        response = described_class.check_rate(
+          property_code: 'bk60',
+          room_code: '104',
+          check_in_date: '2025-01-23',
+          check_out_date: '2025-01-25',
+          adults_count: 1
+        )
+        expect(response).to be_a PlatformClient::Responses::Rate
+
+        rate = response.data
+        expect(rate).to be_a Hash
+        expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+      end
+    end
+  end
+
   describe '.create_booking' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/create_booking' } do
       it 'returns the created booking for the specified property room with status, rate, and guest details' do

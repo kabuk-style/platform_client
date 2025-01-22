@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-01-23&check_out_date=2025-01-25&property_code=bk60&room_code=104
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"8256c9f6aff1747da8e0a2e41ef81dcc"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6cedec7d-79a2-44dd-a6d8-2c8135e44623
+      X-Runtime:
+      - '34.704603'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.18, unpermitted_parameters.action_controller;dur=0.00,
+        sql.active_record;dur=25.26, instantiation.active_record;dur=14.57, start_transaction.active_record;dur=0.00,
+        transaction.active_record;dur=34591.62, process_action.action_controller;dur=34671.46
+      Content-Length:
+      - '621'
+    body:
+      encoding: UTF-8
+      string: '{"rate_key":"3f08b683-89aa-4bde-aed2-7fec7e67b2ed","net":"10795.72","available_rooms":null,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"This
+        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed","check_in_date":"2025-01-23","check_out_date":"2025-01-25","room_name":"Harmony
+        Johnson I","room_code":"104","check_in_instructions":null,"hotel_fees":{"optional
+        service car":{"value":100,"currency":"USD"},"resort fee per head upon check-in":{"value":1,"currency":"USD"}},"cancellation_policies":[{"date_from":"2025-01-21","date_to":"2025-01-24","percent":0.0,"amount":"0.0"}]}'
+  recorded_at: Tue, 21 Jan 2025 13:51:27 GMT
+recorded_with: VCR 6.3.1

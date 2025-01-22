@@ -47,6 +47,11 @@ module PlatformClient
           method: :get,
           type: :content,
         },
+        rate: {
+          uri: '/api/check_rate',
+          method: :get,
+          type: :shopping,
+        },
         booking: {
           uri: '/api/bookings',
           method: :post,
