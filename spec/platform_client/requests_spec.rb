@@ -277,4 +277,26 @@ RSpec.describe PlatformClient::Requests do
       end
     end
   end
+
+  describe '.create_booking' do
+    context 'with valid parameters', vcr: { cassette_name: 'shopping/create_booking' } do
+      it 'returns the created booking for the specified property room with status, rate, and guest details' do
+        response = described_class.create_booking(
+          rate_key: 'db470bf0-90c5-4bf8-9a3f-dd52b0f94798',
+          first_name: 'John',
+          last_name: 'Doe',
+          client_reference: 'XYZ123',
+          contact_number: '123456',
+          nationality: 'JP'
+        )
+        expect(response).to be_a PlatformClient::Responses::Booking
+
+        booking_response = response.data
+        expect(booking_response).to be_a Hash
+        expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests')
+        expect(booking_response['rate'].keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality')
+      end
+    end
+  end
 end

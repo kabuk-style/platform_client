@@ -52,6 +52,11 @@ module PlatformClient
           method: :get,
           type: :shopping,
         },
+        booking: {
+          uri: '/api/bookings',
+          method: :post,
+          type: :shopping,
+        },
       }.freeze
 
       class << self
