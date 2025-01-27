@@ -259,6 +259,53 @@ RSpec.describe PlatformClient::Requests do
     end
   end
 
+  describe '.rooms' do
+    context 'without specifying any filters', vcr: { cassette_name: 'content/rooms_default' } do
+      it 'returns error message for missing property codes' do
+        expect { described_class.rooms }.to raise_error(PlatformClient::Errors::ClientError, 'the server responded with status 422')
+      end
+    end
+
+    context 'with specifying property codes', vcr: { cassette_name: 'content/rooms_property_codes_rndm_bk60_limit3' } do
+      it 'returns a list of rooms for the specified property' do
+        response = described_class.rooms(property_codes: %w[rndm bk60], limit: 3)
+        expect(response).to be_a PlatformClient::Responses::Rooms
+
+        rooms = response.data
+        expect(rooms).to be_a Array
+        expect(rooms.size).to eq 3
+        expect(rooms.sample.keys).to contain_exactly('property_code',
+          'code',
+          'min_adult_occupancy',
+          'max_adult_occupancy',
+          'min_child_occupancy',
+          'max_child_occupancy',
+          'room_category_id',
+          'title',
+          'description',
+          'amenities',
+          'images')
+
+        expect(rooms.first.slice('property_code', 'code', 'title')).to match(
+          'property_code' => 'rndm',
+          'code' => '102',
+          'title' => { 'en-US' => 'Standard Room' }
+        )
+        expect(rooms.second.slice('property_code', 'code', 'title')).to match(
+          'property_code' => 'rndm',
+          'code' => '103',
+          'title' => { 'en-US' => 'Deluxe Room' }
+        )
+        expect(rooms.last.slice('property_code', 'code', 'title')).to match(
+          'property_code' => 'bk60',
+          'code' => '104',
+          'title' => { 'en-US' => 'Standard Room' }
+        )
+        check_pagination(response.pagination, { 'page' => 1, 'size' => 3 }, { 'page' => 2, 'size' => 3 })
+      end
+    end
+  end
+
   describe '.check_rate' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/check_rate' } do
       it 'returns the rate for the specified property room' do
