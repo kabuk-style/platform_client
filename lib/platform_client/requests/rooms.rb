@@ -2,6 +2,7 @@
 
 module PlatformClient
   module Requests
+    # Wrapper for the /api/rooms endpoint
     class Rooms < Base
       include PlatformClient::Requests::Paginated
 
