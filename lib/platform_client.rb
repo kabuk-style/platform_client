@@ -7,6 +7,7 @@ require 'active_support'
 require 'active_support/core_ext'
 
 require 'platform_client/version'
+require 'platform_client/constants'
 require 'platform_client/errors'
 require 'platform_client/configuration'
 require 'platform_client/client'
