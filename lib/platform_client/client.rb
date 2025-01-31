@@ -18,15 +18,15 @@ module PlatformClient
         # If the response body is not valid JSON, it will raise a Faraday::ParsingError.
         conn.response :json
 
-        # Adds the necessary Accept-Encoding headers and automatically decompresses the response.
-        conn.request :gzip
+        # Logs requests and responses.
+        # By default, it only logs the request method and URL, and the request/response headers.
+        conn.response :logger
 
         # Raises an error on 4xx and 5xx responses.
         conn.response :raise_error
 
-        # Logs requests and responses.
-        # By default, it only logs the request method and URL, and the request/response headers.
-        conn.response :logger
+        # Adds the necessary Accept-Encoding headers and automatically decompresses the response.
+        conn.request :gzip
 
         # defaults to :net_http
         conn.adapter Faraday.default_adapter
