@@ -7,6 +7,7 @@ module PlatformClient
       include PlatformClient::Requests::Paginated
 
       attribute :property_codes, array: :string
+      attribute :room_codes, array: :string
       attribute :language, :string, default: PlatformClient::DEFAULT_LANGUAGE
 
       validates :property_codes, presence: true
@@ -17,6 +18,7 @@ module PlatformClient
       def params
         pagination_params.merge(
           property_codes:,
+          room_codes:,
           language:
         ).compact_blank
       end

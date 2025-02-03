@@ -86,9 +86,10 @@ module PlatformClient
       # @param page [Integer] Page number, pass nil to get the first page
       # @param limit [Integer] Number of items per page, pass nil to get the default number of items
       # @param property_codes [Array<String>] Array of property codes to get rooms for
+      # @param room_codes [Array<String>] Array of room codes to get rooms for
       # @param language [String] Language code to get the response in, default is 'ja-JP'
-      def rooms(page: nil, limit: nil, property_codes: [], language: PlatformClient::DEFAULT_LANGUAGE)
-        Rooms.call(page:, limit:, property_codes:, language:)
+      def rooms(page: nil, limit: nil, property_codes: [], room_codes: [], language: PlatformClient::DEFAULT_LANGUAGE)
+        Rooms.call(page:, limit:, property_codes:, room_codes:, language:)
       end
 
       # ----------------------------------------------------Booking-----------------------------------------------------

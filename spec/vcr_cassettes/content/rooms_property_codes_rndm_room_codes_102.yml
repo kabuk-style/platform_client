@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/rooms?language=en-US&limit=3&property_codes%5B%5D=rndm&room_codes%5B%5D=102
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"c5fd1bd797e94cd09c32f2f97c15a523"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9b515c8e-0a31-4c58-b3dc-e49b42c1178a
+      X-Runtime:
+      - '0.060279'
+      X-Cloud-Trace-Context:
+      - aab7645a950ed91d00ea6fb5ca044ae9/10771263319765593615;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Mon, 03 Feb 2025 09:58:59 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '1981'
+      Expires:
+      - Mon, 03 Feb 2025 09:58:59 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"rooms":[{"property_code":"rndm","code":"102","min_adult_occupancy":1,"max_adult_occupancy":3,"min_child_occupancy":0,"max_child_occupancy":1,"room_category_id":4,"title":{"en-US":"Standard
+        Room"},"description":{"en-US":null},"amenities":[126,148],"images":[{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/02d040be_z.jpg","hero_image":true,"caption":{"en-US":"Room"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/376b1880_z.jpg","hero_image":false,"caption":{"en-US":"Room"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/2f3dc2c5_z.jpg","hero_image":false,"caption":{"en-US":"Room"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/06d7cd35_z.jpg","hero_image":false,"caption":{"en-US":"In-Room
+        Dining"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/9777662b_z.jpg","hero_image":false,"caption":{"en-US":"Private
+        Kitchen"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/ba4643a8_z.jpg","hero_image":false,"caption":{"en-US":"Living
+        Area"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/025bbe68_z.jpg","hero_image":false,"caption":{"en-US":"Living
+        Area"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/cdc53c58_z.jpg","hero_image":false,"caption":{"en-US":"Bathroom"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/879251f8_z.jpg","hero_image":false,"caption":{"en-US":"Dining"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/1053f0d0_z.jpg","hero_image":false,"caption":{"en-US":"Beach/Ocean
+        View"}},{"url":"https://i.travelapi.com/hotels/11000000/10170000/10168000/10167936/d78ac342_z.jpg","hero_image":false,"caption":{"en-US":"Water
+        view"}}]}],"query":{"limit":3,"property_codes":["rndm"],"room_codes":["102"],"language":"en-US"},"pagination":{"current":{"page":1,"size":1},"next":null}}'
+  recorded_at: Mon, 03 Feb 2025 09:58:59 GMT
+recorded_with: VCR 6.3.1

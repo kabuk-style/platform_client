@@ -266,42 +266,90 @@ RSpec.describe PlatformClient::Requests do
       end
     end
 
-    context 'with specifying property codes', vcr: { cassette_name: 'content/rooms_property_codes_rndm_bk60_limit3' } do
-      it 'returns a list of rooms for the specified property' do
-        response = described_class.rooms(property_codes: %w[rndm bk60], limit: 3)
-        expect(response).to be_a PlatformClient::Responses::Rooms
+    context 'with filters' do
+      subject(:response) { described_class.rooms(property_codes:, room_codes:, limit:) }
 
-        rooms = response.data
-        expect(rooms).to be_a Array
-        expect(rooms.size).to eq 3
-        expect(rooms.sample.keys).to contain_exactly('property_code',
-          'code',
-          'min_adult_occupancy',
-          'max_adult_occupancy',
-          'min_child_occupancy',
-          'max_child_occupancy',
-          'room_category_id',
-          'title',
-          'description',
-          'amenities',
-          'images')
+      let(:property_codes) { %w[rndm bk60] }
+      let(:room_codes) { nil }
+      let(:limit) { 3 }
 
-        expect(rooms.first.slice('property_code', 'code', 'title')).to match(
-          'property_code' => 'rndm',
-          'code' => '102',
-          'title' => { 'en-US' => 'Standard Room' }
-        )
-        expect(rooms.second.slice('property_code', 'code', 'title')).to match(
-          'property_code' => 'rndm',
-          'code' => '103',
-          'title' => { 'en-US' => 'Deluxe Room' }
-        )
-        expect(rooms.last.slice('property_code', 'code', 'title')).to match(
-          'property_code' => 'bk60',
-          'code' => '104',
-          'title' => { 'en-US' => 'Standard Room' }
-        )
-        check_pagination(response.pagination, { 'page' => 1, 'size' => 3 }, { 'page' => 2, 'size' => 3 })
+      shared_examples 'returns a list of rooms for the specified properties' do
+        it 'returns a list of rooms for the specified properties' do
+          expect(response).to be_a PlatformClient::Responses::Rooms
+
+          rooms = response.data
+          expect(rooms).to be_a Array
+          expect(rooms.size).to eq 3
+          expect(rooms.sample.keys).to contain_exactly('property_code',
+            'code',
+            'min_adult_occupancy',
+            'max_adult_occupancy',
+            'min_child_occupancy',
+            'max_child_occupancy',
+            'room_category_id',
+            'title',
+            'description',
+            'amenities',
+            'images')
+
+          expect(rooms.first.slice('property_code', 'code', 'title')).to match(
+            'property_code' => 'rndm',
+            'code' => '102',
+            'title' => { 'en-US' => 'Standard Room' }
+          )
+          expect(rooms.second.slice('property_code', 'code', 'title')).to match(
+            'property_code' => 'rndm',
+            'code' => '103',
+            'title' => { 'en-US' => 'Deluxe Room' }
+          )
+          expect(rooms.last.slice('property_code', 'code', 'title')).to match(
+            'property_code' => 'bk60',
+            'code' => '104',
+            'title' => { 'en-US' => 'Standard Room' }
+          )
+          check_pagination(response.pagination, { 'page' => 1, 'size' => 3 }, { 'page' => 2, 'size' => 3 })
+        end
+      end
+
+      context 'with specifying property codes without room codes', vcr: { cassette_name: 'content/rooms_property_codes_rndm_bk60_limit3' } do
+        it_behaves_like 'returns a list of rooms for the specified properties'
+      end
+
+      context 'with multiple property codes and room codes', vcr: { cassette_name: 'content/rooms_property_codes_rndm_bk60_room_codes_102_104' } do
+        let(:room_codes) { %w[102 104] }
+
+        it_behaves_like 'returns a list of rooms for the specified properties'
+      end
+
+      context 'with single property code and room codes', vcr: { cassette_name: 'content/rooms_property_codes_rndm_room_codes_102' } do
+        let(:property_codes) { %w[rndm] }
+        let(:room_codes) { %w[102] }
+
+        it 'returns a list of matching rooms for the specified property' do
+          expect(response).to be_a PlatformClient::Responses::Rooms
+
+          rooms = response.data
+          expect(rooms).to be_a Array
+          expect(rooms.size).to eq 1
+          expect(rooms.first.keys).to contain_exactly('property_code',
+            'code',
+            'min_adult_occupancy',
+            'max_adult_occupancy',
+            'min_child_occupancy',
+            'max_child_occupancy',
+            'room_category_id',
+            'title',
+            'description',
+            'amenities',
+            'images')
+
+          expect(rooms.first.slice('property_code', 'code', 'title')).to match(
+            'property_code' => 'rndm',
+            'code' => '102',
+            'title' => { 'en-US' => 'Standard Room' }
+          )
+          check_pagination(response.pagination, { 'page' => 1, 'size' => 1 }, nil)
+        end
       end
     end
   end
