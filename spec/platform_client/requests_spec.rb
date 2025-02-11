@@ -384,7 +384,7 @@ RSpec.describe PlatformClient::Requests do
           contact_number: '123456',
           nationality: 'JP'
         )
-        expect(response).to be_a PlatformClient::Responses::Booking
+        expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
 
         booking_response = response.data
         expect(booking_response).to be_a Hash

@@ -58,19 +58,28 @@ module PlatformClient
           type: :shopping,
         },
         booking: {
-          uri: '/api/bookings',
-          method: :post,
-          type: :shopping,
+          confirmation: {
+            uri: '/api/bookings',
+            method: :post,
+            type: :shopping,
+          },
         },
       }.freeze
 
       class << self
         # Find an endpoint by API name
-        # @param name [Symbol,String] the name of the endpoint derived from the API name by transforming it to snake_case
-        #                             e.g. 'login' for 'Login', 'get_status' for 'GetStatus'
-        # @return [EndPoint]
+        #
+        # This method looks up an endpoint using a name derived from the API class name,
+        # transforming it into an array of symbols. It allows finding deeply nested
+        # endpoints using an array-style lookup.
+        #
+        # @param name [Array<Symbol>, Symbol, String] The endpoint name.
+        #   - e.g., `:login` for `"PlatformClient::Requests::Login"`
+        #   - e.g., `[:get_status]` for `"PlatformClient::Requests::GetStatus"`
+        #   - e.g., `[:booking, :confirmation]` for `"PlatformClient::Requests::Booking::Confirmation"`
+        # @return [EndPoint] The found endpoint.
         def find!(name)
-          new(**ENDPOINTS.fetch(name.to_sym))
+          new(**ENDPOINTS.dig(*name))
         end
       end
 

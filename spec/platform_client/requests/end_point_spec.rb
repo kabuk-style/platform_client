@@ -51,15 +51,15 @@ RSpec.describe PlatformClient::Requests::EndPoint do
     end
 
     it 'returns the correct endpoint for rate' do
-      endpoint = described_class.find!(:rate)
+      endpoint = described_class.find!([:rate])
 
       expect(endpoint.uri).to eq('/api/check_rate')
       expect(endpoint.method).to eq(:get)
       expect(endpoint.type).to eq(:shopping)
     end
 
-    it 'returns the correct endpoint for booking' do
-      endpoint = described_class.find!(:booking)
+    it 'returns the correct endpoint for booking confirmation' do
+      endpoint = described_class.find!(%i[booking confirmation])
 
       expect(endpoint.uri).to eq('/api/bookings')
       expect(endpoint.method).to eq(:post)
