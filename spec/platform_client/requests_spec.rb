@@ -377,7 +377,7 @@ RSpec.describe PlatformClient::Requests do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/create_booking' } do
       it 'returns the created booking for the specified property room with status, rate, and guest details' do
         response = described_class.create_booking(
-          rate_key: 'db470bf0-90c5-4bf8-9a3f-dd52b0f94798',
+          rate_key: '12ba0884-bac1-4738-8323-ab04f1252dfe',
           first_name: 'John',
           last_name: 'Doe',
           client_reference: 'XYZ123',
@@ -388,7 +388,23 @@ RSpec.describe PlatformClient::Requests do
 
         booking_response = response.data
         expect(booking_response).to be_a Hash
-        expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests')
+        expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests', 'supplier_reference')
+        expect(booking_response['rate'].keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality')
+      end
+    end
+  end
+
+  describe '.cancel_booking' do
+    context 'with valid parameters', vcr: { cassette_name: 'shopping/cancel_booking' } do
+      it 'returns the booking with cancelled status for the specified client reference' do
+        response = described_class.cancel_booking(client_reference: 'ZFOOIVQVNG')
+        expect(response).to be_a PlatformClient::Responses::Booking::Cancellation
+
+        booking_response = response.data
+        expect(booking_response).to be_a Hash
+        expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests', 'supplier_reference')
+        expect(booking_response['status']).to eq 'cancelled'
         expect(booking_response['rate'].keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
         expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality')
       end

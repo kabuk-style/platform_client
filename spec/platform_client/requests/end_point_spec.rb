@@ -65,5 +65,13 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       expect(endpoint.method).to eq(:post)
       expect(endpoint.type).to eq(:shopping)
     end
+
+    it 'returns the correct endpoint for booking cancellation' do
+      endpoint = described_class.find!(%i[booking cancellation])
+
+      expect(endpoint.uri).to eq('/api/bookings/@client_reference')
+      expect(endpoint.method).to eq(:delete)
+      expect(endpoint.type).to eq(:shopping)
+    end
   end
 end
