@@ -70,8 +70,9 @@ module PlatformClient
         {
           'Content-Type' => 'application/json',
           'Accept-Encoding' => 'gzip',
-          'User-Agent' => 'API Client for Kabuk Platform',
-        }
+          'User-Agent' => "API Client for Kabuk Platform - #{client_app_env}",
+          'X-Client-App-Env' => client_app_env,
+        }.compact_blank
       end
 
       def response_class
@@ -83,6 +84,10 @@ module PlatformClient
       # @param base_url [String] the base URL for the request. Content and Shopping APIs have different base URL.
       def connection
         @connection ||= Client.new.connection
+      end
+
+      def client_app_env
+        PlatformClient.configuration.client_app_env
       end
     end
   end
