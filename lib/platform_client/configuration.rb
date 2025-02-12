@@ -4,6 +4,7 @@ module PlatformClient
   # Configuration class
   class Configuration
     attr_writer :base_url
+    attr_accessor :client_app_env
 
     # The base URL for the API
     #
