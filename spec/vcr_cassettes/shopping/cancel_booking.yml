@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://kabuk-platform.com/api/bookings/ZFOOIVQVNG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"5a27346a287abea76da8b4ed35597f0b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6578a7da-24b1-4cfc-82fc-42836d578264
+      X-Runtime:
+      - '1.629121'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
+        sql.active_record;dur=29.46, instantiation.active_record;dur=1.60, start_transaction.active_record;dur=0.04,
+        transaction.active_record;dur=27.98, process_action.action_controller;dur=1599.77
+      Content-Length:
+      - '822'
+    body:
+      encoding: UTF-8
+      string: '{"client_reference":"ZFOOIVQVNG","status":"cancelled","supplier_reference":"k9187g8d","rate":{"rate_key":"c7926d6e-334d-42eb-a295-6508ad2b4ad9","net":"5397.86","available_rooms":null,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"This
+        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed","check_in_date":"2025-02-16","check_out_date":"2025-02-17","room_name":"Harmony
+        Johnson I","room_code":"104","check_in_instructions":null,"hotel_fees":{"optional
+        service car":{"value":100,"currency":"USD"},"resort fee per head upon check-in":{"value":1,"currency":"USD"}},"cancellation_policies":[{"date_from":"2025-02-11","date_to":"2025-02-17","percent":0.0,"amount":"0.0"}]},"guests":[{"first_name":"Sooraj","last_name":"Kumar","nationality":"JP","contact_number":"+81
+        1111111111"}]}'
+  recorded_at: Wed, 12 Feb 2025 00:03:42 GMT
+recorded_with: VCR 6.3.1
