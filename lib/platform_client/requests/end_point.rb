@@ -63,6 +63,11 @@ module PlatformClient
             method: :post,
             type: :shopping,
           },
+          cancellation: {
+            uri: '/api/bookings/@client_reference',
+            method: :delete,
+            type: :shopping,
+          },
         },
       }.freeze
 

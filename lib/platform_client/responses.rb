@@ -10,6 +10,7 @@ require 'platform_client/responses/room_categories'
 require 'platform_client/responses/rooms'
 require 'platform_client/responses/rate'
 require 'platform_client/responses/booking/confirmation'
+require 'platform_client/responses/booking/cancellation'
 
 module PlatformClient
   # Wrapper over responses

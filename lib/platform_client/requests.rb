@@ -12,6 +12,7 @@ require 'platform_client/requests/room_categories'
 require 'platform_client/requests/rooms'
 require 'platform_client/requests/rate'
 require 'platform_client/requests/booking/confirmation'
+require 'platform_client/requests/booking/cancellation'
 
 module PlatformClient
   # Wrapper over requests
@@ -119,6 +120,15 @@ module PlatformClient
       # @return [PlatformClient::Responses::Booking::Confirmation]
       def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:) # rubocop:disable Metrics/ParameterLists
         Booking::Confirmation.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:)
+      end
+
+      # Cancel the booking for a room
+      #
+      # @param client_reference [String] Client reference that was used for the booking
+      #
+      # @return [PlatformClient::Responses::Booking::Cancellation]
+      def cancel_booking(client_reference:)
+        Booking::Cancellation.call(client_reference:)
       end
     end
   end
