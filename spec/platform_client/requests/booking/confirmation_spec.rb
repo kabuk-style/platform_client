@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe PlatformClient::Requests::Booking, type: :model do
+RSpec.describe PlatformClient::Requests::Booking::Confirmation, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:rate_key) }
     it { is_expected.to validate_presence_of(:client_reference) }

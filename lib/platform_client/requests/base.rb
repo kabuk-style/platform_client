@@ -54,7 +54,7 @@ module PlatformClient
       def endpoint
         return @endpoint if defined? @endpoint
 
-        endpoint_name = self.class.name.gsub('PlatformClient::Requests::', '').underscore
+        endpoint_name = self.class.name.gsub('PlatformClient::Requests::', '').underscore.split('/').map(&:to_sym)
         @endpoint = PlatformClient::Requests::EndPoint.find!(endpoint_name)
       end
 
