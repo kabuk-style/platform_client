@@ -13,6 +13,7 @@ require 'platform_client/requests/rooms'
 require 'platform_client/requests/rate'
 require 'platform_client/requests/booking/confirmation'
 require 'platform_client/requests/booking/cancellation'
+require 'platform_client/requests/availabilities'
 
 module PlatformClient
   # Wrapper over requests
@@ -93,7 +94,20 @@ module PlatformClient
         Rooms.call(page:, limit:, property_codes:, room_codes:, language:)
       end
 
-      # ----------------------------------------------------Booking-----------------------------------------------------
+      # ----------------------------------------------------Shopping and Booking-----------------------------------------------------
+
+      # check availability for a property room
+      #
+      # @param property_code [String] Property code
+      # @param room_code [String] Room code
+      # @param from_date [String] Check-in date in 'YYYY-MM-DD' format
+      # @param to_date [String] Check-out date in 'YYYY-MM-DD' format
+      # @param adults_count [Integer] Number of adults, default is 1
+      #
+      # @return [PlatformClient::Responses::Availabilities]
+      def check_availability(property_code:, room_code:, from_date:, to_date:, adults_count: 1)
+        Availabilities.call(property_code:, room_code:, from_date:, to_date:, adults_count:)
+      end
 
       # Check rate for a property room
       #
