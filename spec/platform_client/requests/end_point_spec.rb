@@ -58,6 +58,14 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       expect(endpoint.type).to eq(:shopping)
     end
 
+    it 'returns the correct endpoint for availabilities' do
+      endpoint = described_class.find!([:availabilities])
+
+      expect(endpoint.uri).to eq('/api/check_availability')
+      expect(endpoint.method).to eq(:get)
+      expect(endpoint.type).to eq(:shopping)
+    end
+
     it 'returns the correct endpoint for booking confirmation' do
       endpoint = described_class.find!(%i[booking confirmation])
 

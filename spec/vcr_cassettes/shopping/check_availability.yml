@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_availability?adults_count=1&from_date=2025-02-19&property_code=bk60&room_code=104&to_date=2025-02-22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform -
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"de1a95a9d43adafb34e778afdffaf2df"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 4705466b-10ab-45f9-b002-dfcf401963f3
+      X-Runtime:
+      - '0.083691'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01,
+        sql.active_record;dur=20.25, instantiation.active_record;dur=0.55, process_action.action_controller;dur=27.61
+      Content-Length:
+      - '1964'
+    body:
+      encoding: UTF-8
+      string: '[{"date":"2025-02-19","net":"273.47","available_rooms":3,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"Voluptate
+        ratione neque. Atque aut incidunt. Corrupti architecto voluptatem.","supplier_description":"Magnam
+        tenetur iusto asperiores.","room_name":"Harmony Johnson I","room_code":"104","cancellation_policies":[{"date_from":"2025-02-12","date_to":"2025-02-26","percent":40.32,"amount":"65.54"},{"date_from":"2025-02-07","date_to":"2025-02-21","percent":98.29,"amount":"96.11"}]},{"date":"2025-02-20","net":"53.93","available_rooms":6,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"Aliquam
+        dolorum enim. Ut dolor dolor. Sit consectetur doloremque.","supplier_description":"Voluptatem
+        sit ut repudiandae.","room_name":"Harmony Johnson I","room_code":"104","cancellation_policies":[{"date_from":"2025-02-14","date_to":"2025-02-18","percent":81.21,"amount":"77.19"},{"date_from":"2025-02-11","date_to":"2025-02-24","percent":18.05,"amount":"92.63"}]},{"date":"2025-02-21","net":"258.39","available_rooms":6,"board_code":"room_only","non_refundable":true,"cancellation_remarks":"Dolor
+        cum sapiente. Et alias ut. Deserunt eveniet at.","supplier_description":"Culpa
+        repellat id quia.","room_name":"Harmony Johnson I","room_code":"104","cancellation_policies":[{"date_from":"2025-02-10","date_to":"2025-02-25","percent":22.33,"amount":"48.54"},{"date_from":"2025-02-16","date_to":"2025-02-22","percent":58.64,"amount":"72.5"}]},{"date":"2025-02-22","net":"242.39","available_rooms":6,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"Dignissimos
+        nihil veniam. Doloremque illo tempore. Nostrum fuga quia.","supplier_description":"Non
+        fuga est excepturi.","room_name":"Harmony Johnson I","room_code":"104","cancellation_policies":[{"date_from":"2025-02-11","date_to":"2025-02-21","percent":87.89,"amount":"11.33"},{"date_from":"2025-02-09","date_to":"2025-02-25","percent":56.42,"amount":"13.9"}]}]'
+  recorded_at: Mon, 17 Feb 2025 20:44:01 GMT
+recorded_with: VCR 6.3.1

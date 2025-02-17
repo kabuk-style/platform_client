@@ -373,6 +373,29 @@ RSpec.describe PlatformClient::Requests do
     end
   end
 
+  describe '.check_availability' do
+    context 'with valid parameters', vcr: { cassette_name: 'shopping/check_availability' } do
+      it 'returns the availabilities for the specified property room for the specified dates' do
+        response = described_class.check_availability(
+          property_code: 'bk60',
+          room_code: '104',
+          from_date: '2025-02-19',
+          to_date: '2025-02-22',
+          adults_count: 1
+        )
+        expect(response).to be_a PlatformClient::Responses::Availabilities
+
+        availabilities = response.data
+        expect(availabilities).to be_a Array
+        expect(availabilities.size).to eq 4
+
+        availability = availabilities.sample
+        expect(availability).to be_a Hash
+        expect(availability.keys).to contain_exactly('date', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'room_name', 'room_code', 'cancellation_policies')
+      end
+    end
+  end
+
   describe '.create_booking' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/create_booking' } do
       it 'returns the created booking for the specified property room with status, rate, and guest details' do
