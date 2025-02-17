@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     platform_client (0.1.0)
-      activemodel (~> 7.2)
-      activesupport (~> 7.2)
+      activemodel (>= 7.2, < 9)
+      activesupport (>= 7.2, < 9)
       faraday (~> 1.10)
       faraday-gzip (~> 2.0)
       pry
