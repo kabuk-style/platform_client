@@ -35,8 +35,8 @@ Gem::Specification.new do |spec|
 
   # Dependencies
   ## Main dependencies
-  spec.add_dependency 'activemodel', '~> 7.2'
-  spec.add_dependency 'activesupport', '~> 7.2'
+  spec.add_dependency 'activemodel', '>= 7.2', '< 9'
+  spec.add_dependency 'activesupport', '>= 7.2', '< 9'
   spec.add_dependency 'faraday', '~> 1.10'
   spec.add_dependency 'faraday-gzip', '~> 2.0'
 
