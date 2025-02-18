@@ -57,6 +57,11 @@ module PlatformClient
           method: :get,
           type: :shopping,
         },
+        availabilities: {
+          uri: '/api/check_availability',
+          method: :get,
+          type: :shopping,
+        },
         booking: {
           confirmation: {
             uri: '/api/bookings',
