@@ -355,8 +355,8 @@ RSpec.describe PlatformClient::Requests do
   end
 
   describe '.check_rate' do
-    context 'with valid parameters', vcr: { cassette_name: 'shopping/check_rate' } do
-      it 'returns the rate for the specified property room' do
+    context 'with valid parameters' do
+      it 'returns the rate for the specified property room', vcr: { cassette_name: 'shopping/check_rate' } do
         response = described_class.check_rate(
           property_code: 'bk60',
           room_code: '104',
@@ -369,6 +369,24 @@ RSpec.describe PlatformClient::Requests do
         rate = response.data
         expect(rate).to be_a Hash
         expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+      end
+
+      context 'with non-japanese nationality' do
+        it 'returns the rate for the specified property room', vcr: { cassette_name: 'shopping/check_rate_non_japanese_nationality' } do
+          response = described_class.check_rate(
+            property_code: 'bk60',
+            room_code: '104',
+            check_in_date: '2025-03-23',
+            check_out_date: '2025-03-25',
+            adults_count: 1,
+            nationality: 'US'
+          )
+          expect(response).to be_a PlatformClient::Responses::Rate
+
+          rate = response.data
+          expect(rate).to be_a Hash
+          expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+        end
       end
     end
   end
