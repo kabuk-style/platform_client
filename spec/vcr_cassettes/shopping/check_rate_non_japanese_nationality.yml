@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-03-23&check_out_date=2025-03-25&nationality=US&property_code=bk60&room_code=104
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform -
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"258568f7871bfa65dc643398d5597855"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b6be1cde-ee6a-465e-b427-7774a5a51fa4
+      X-Runtime:
+      - '37.685712'
+      X-Cloud-Trace-Context:
+      - 86d331a49336b692bc7751200f2264c1/4931818455278692772;o=1
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Set-Cookie:
+      - "<GAESA_COOKIE>"
+      Date:
+      - Wed, 19 Feb 2025 04:22:04 GMT
+      Server:
+      - Google Frontend
+      Content-Length:
+      - '621'
+      Expires:
+      - Wed, 19 Feb 2025 04:22:04 GMT
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"rate_key":"387358e2-0827-4d99-8a73-e94c13ecbb78","net":"10795.72","available_rooms":null,"board_code":"all_inclusive","non_refundable":false,"cancellation_remarks":"This
+        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed","check_in_date":"2025-03-23","check_out_date":"2025-03-25","room_name":"Standard
+        Room","room_code":"104","check_in_instructions":null,"hotel_fees":{"optional
+        service car":{"value":100,"currency":"USD"},"resort fee per head upon check-in":{"value":1,"currency":"USD"}},"cancellation_policies":[{"date_from":"2025-02-19","date_to":"2025-03-24","percent":0.0,"amount":"0.0"}]}'
+  recorded_at: Wed, 19 Feb 2025 04:22:04 GMT
+recorded_with: VCR 6.3.1

@@ -116,10 +116,11 @@ module PlatformClient
       # @param check_in_date [String] Check-in date in 'YYYY-MM-DD' format
       # @param check_out_date [String] Check-out date in 'YYYY-MM-DD' format
       # @param adults_count [Integer] Number of adults, default is 1
+      # @param nationality [String] Nationality code(ISO 3166-1 alpha-2 country code) of the guests looking for available packages
       #
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1)
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:)
       end
 
       # Create the booking for a room
