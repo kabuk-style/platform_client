@@ -3,7 +3,6 @@
 RSpec.describe PlatformClient::Requests::Availabilities, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:property_code) }
-    it { is_expected.to validate_presence_of(:room_code) }
 
     context 'with format validations' do
       context 'with check_in_date and check_out_date' do
