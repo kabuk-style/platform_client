@@ -15,8 +15,7 @@ RSpec.describe PlatformClient::Requests::Rate, type: :model do
       end
 
       context 'with adults_count' do
-        it { is_expected.to allow_value(rand(1..5)).for(:adults_count) }
-        it { is_expected.not_to allow_value(6).for(:adults_count) }
+        it { is_expected.to allow_value(rand(1..10)).for(:adults_count) }
         it { is_expected.not_to allow_value(0).for(:adults_count) }
         it { is_expected.not_to allow_value('abc').for(:adults_count) }
       end

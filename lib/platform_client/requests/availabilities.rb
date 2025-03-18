@@ -12,7 +12,7 @@ module PlatformClient
 
       validates :property_code, presence: true
       validates :from_date, :to_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: 'must be in YYYY-MM-DD format' }
-      validates :adults_count, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }, allow_nil: true
+      validates :adults_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
     end
   end
 end
