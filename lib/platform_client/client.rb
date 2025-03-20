@@ -7,6 +7,9 @@ module PlatformClient
   class Client
     def connection
       @connection ||= Faraday.new(url: base_url) do |conn|
+        # set the timeout for the connection. Default is 60 seconds
+        conn.options.timeout = 180
+
         # Sets the Content-Type header to application/json on each request.
         # Also, if the request body is a Hash, it will automatically be encoded as JSON.
         conn.request :json
