@@ -423,7 +423,8 @@ RSpec.describe PlatformClient::Requests do
           last_name: 'Doe',
           client_reference: 'XYZ123',
           contact_number: '123456',
-          nationality: 'JP'
+          nationality: 'JP',
+          country_code: 'jp'
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
 
