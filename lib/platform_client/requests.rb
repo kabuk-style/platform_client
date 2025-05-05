@@ -119,8 +119,8 @@ module PlatformClient
       # @param nationality [String] Nationality code(ISO 3166-1 alpha-2 country code) of the guests looking for available packages
       #
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY) # rubocop:disable Metrics/ParameterLists
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, country_code:, nationality: PlatformClient::DEFUAULT_NATIONALITY) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:, country_code:)
       end
 
       # Create the booking for a room

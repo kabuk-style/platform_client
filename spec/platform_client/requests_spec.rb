@@ -362,7 +362,8 @@ RSpec.describe PlatformClient::Requests do
           room_code: '104',
           check_in_date: '2025-01-23',
           check_out_date: '2025-01-25',
-          adults_count: 1
+          adults_count: 1,
+          country_code: 'jp',
         )
         expect(response).to be_a PlatformClient::Responses::Rate
 
@@ -379,7 +380,8 @@ RSpec.describe PlatformClient::Requests do
             check_in_date: '2025-03-23',
             check_out_date: '2025-03-25',
             adults_count: 1,
-            nationality: 'US'
+            nationality: 'US',
+            country_code: 'jp',
           )
           expect(response).to be_a PlatformClient::Responses::Rate
 
@@ -424,7 +426,7 @@ RSpec.describe PlatformClient::Requests do
           client_reference: 'XYZ123',
           contact_number: '123456',
           nationality: 'JP',
-          country_code: 'jp'
+          country_code: 'jp',
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
 
