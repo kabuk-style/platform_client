@@ -425,7 +425,9 @@ RSpec.describe PlatformClient::Requests do
           last_name: 'Doe',
           client_reference: 'XYZ123',
           contact_number: '123456',
-          nationality: 'JP'
+          nationality: 'JP',
+          email: 'john@example.com',
+          guest_ip: '49.36.67.203'
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
 

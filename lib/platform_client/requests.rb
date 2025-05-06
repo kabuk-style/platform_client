@@ -133,10 +133,12 @@ module PlatformClient
       # @param last_name [String] Last name of the guest
       # @param nationality [String] Nationality of the guest
       # @param contact_number [String] Contact number of the guest
+      # @param email [String] Email of the guest
+      # @param guest_ip [String] IP address of the guest from where the booking is made
       #
       # @return [PlatformClient::Responses::Booking::Confirmation]
-      def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:) # rubocop:disable Metrics/ParameterLists
-        Booking::Confirmation.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:)
+      def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:, email: nil, guest_ip: nil) # rubocop:disable Metrics/ParameterLists
+        Booking::Confirmation.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:, email:, guest_ip:)
       end
 
       # Cancel the booking for a room
