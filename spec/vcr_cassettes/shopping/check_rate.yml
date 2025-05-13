@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-01-23&check_out_date=2025-01-25&nationality=JP&property_code=bk60&room_code=104
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-01-23&check_out_date=2025-01-25&country_code=JP&language=en-US&nationality=JP&property_code=bk60&room_code=104
     body:
       encoding: US-ASCII
       string: ''
