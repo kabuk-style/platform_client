@@ -144,10 +144,11 @@ module PlatformClient
       # Cancel the booking for a room
       #
       # @param client_reference [String] Client reference that was used for the booking
+      # @param guest_ip [String] IP address of the guest from where the cancellation is made
       #
       # @return [PlatformClient::Responses::Booking::Cancellation]
-      def cancel_booking(client_reference:)
-        Booking::Cancellation.call(client_reference:)
+      def cancel_booking(client_reference:, guest_ip: nil)
+        Booking::Cancellation.call(client_reference:, guest_ip:)
       end
     end
   end

@@ -443,7 +443,7 @@ RSpec.describe PlatformClient::Requests do
   describe '.cancel_booking' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/cancel_booking' } do
       it 'returns the booking with cancelled status for the specified client reference' do
-        response = described_class.cancel_booking(client_reference: 'ZFOOIVQVNG')
+        response = described_class.cancel_booking(client_reference: 'youruser1232', guest_ip: '5.5.5.5')
         expect(response).to be_a PlatformClient::Responses::Booking::Cancellation
 
         booking_response = response.data
@@ -451,7 +451,7 @@ RSpec.describe PlatformClient::Requests do
         expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests', 'supplier_reference')
         expect(booking_response['status']).to eq 'cancelled'
         expect(booking_response['rate'].keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
-        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality')
+        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality', 'email')
       end
     end
   end
