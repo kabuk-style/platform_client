@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: delete
-    uri: https://kabuk-platform.com/api/bookings/ZFOOIVQVNG
+    uri: https://kabuk-platform.com/api/bookings/youruser1232?guest_ip=5.5.5.5
     body:
       encoding: US-ASCII
       string: ''
@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip
       User-Agent:
-      - API Client for Kabuk Platform
+      - API Client for Kabuk Platform -
       Authorization:
       - Bearer <BEARER_TOKEN>
       Accept:
@@ -37,25 +37,25 @@ http_interactions:
       Vary:
       - Accept
       Etag:
-      - W/"5a27346a287abea76da8b4ed35597f0b"
+      - W/"8fffcbd42cb6858f1b4c19bc4731fba8"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 6578a7da-24b1-4cfc-82fc-42836d578264
+      - 39d88ca1-ff03-4a64-8c00-a584acad81d0
       X-Runtime:
-      - '1.629121'
+      - '2.026050'
       Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        sql.active_record;dur=29.46, instantiation.active_record;dur=1.60, start_transaction.active_record;dur=0.04,
-        transaction.active_record;dur=27.98, process_action.action_controller;dur=1599.77
+      - start_processing.action_controller;dur=0.03, sql.active_record;dur=42.53,
+        instantiation.active_record;dur=2.73, unpermitted_parameters.action_controller;dur=0.01,
+        start_transaction.active_record;dur=0.03, transaction.active_record;dur=42.07,
+        process_action.action_controller;dur=1943.65
       Content-Length:
-      - '822'
+      - '940'
     body:
       encoding: UTF-8
-      string: '{"client_reference":"ZFOOIVQVNG","status":"cancelled","supplier_reference":"k9187g8d","rate":{"rate_key":"c7926d6e-334d-42eb-a295-6508ad2b4ad9","net":"5397.86","available_rooms":null,"board_code":"room_only","non_refundable":false,"cancellation_remarks":"This
-        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed","check_in_date":"2025-02-16","check_out_date":"2025-02-17","room_name":"Harmony
-        Johnson I","room_code":"104","check_in_instructions":null,"hotel_fees":{"optional
-        service car":{"value":100,"currency":"USD"},"resort fee per head upon check-in":{"value":1,"currency":"USD"}},"cancellation_policies":[{"date_from":"2025-02-11","date_to":"2025-02-17","percent":0.0,"amount":"0.0"}]},"guests":[{"first_name":"Sooraj","last_name":"Kumar","nationality":"JP","contact_number":"+81
-        1111111111"}]}'
-  recorded_at: Wed, 12 Feb 2025 00:03:42 GMT
+      string: '{"client_reference":"youruser1232","status":"cancelled","supplier_reference":"520413623102873","rate":{"rate_key":"0ed03ad8-c47a-4d49-b01f-253dc7fea7c0","net":"915.0","available_rooms":2300,"board_code":"unknown","non_refundable":false,"cancellation_remarks":null,"supplier_description":"Honeymoon
+        Room (#Test-Only#Partner:Connect)","check_in_date":"2025-06-15","check_out_date":"2025-06-17","room_name":"Honeymoon
+        Room (#Test-Only#Partner:Connect)","room_code":"230410389","check_in_instructions":null,"hotel_fees":{"resort_fee":{"value":"153","currency":"JPY"},"mandatory_fee":{"value":"1","currency":"JPY"},"mandatory_tax":{"value":"2","currency":"JPY"}},"cancellation_policies":[{"date_from":"2025-06-13
+        02:00:00 +0900","date_to":"2025-06-16 02:00:00 +0900","penalty_type":"amount","penalty_value":"334.0"}]},"guests":[{"first_name":"john","last_name":"doe","nationality":"JP","contact_number":"+923312345678","email":"this@mail.com"}]}'
+  recorded_at: Tue, 13 May 2025 18:20:48 GMT
 recorded_with: VCR 6.3.1
