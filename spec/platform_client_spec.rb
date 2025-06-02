@@ -6,7 +6,7 @@ RSpec.describe PlatformClient do
   end
 
   it 'defines SUPPORTED_LANGUAGES' do
-    expect(described_class::SUPPORTED_LANGUAGES).to eq %w[en-US ja-JP]
+    expect(described_class::SUPPORTED_LANGUAGES).to eq %w[en-US ja-JP ko-KR zh-TW]
   end
 
   describe '.configuration' do
