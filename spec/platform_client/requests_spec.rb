@@ -149,7 +149,7 @@ RSpec.describe PlatformClient::Requests do
 
     context 'with specifying page and limit along with language other than default', vcr: { cassette_name: 'content/properties_page_2_limit_5_japanese' } do
       it 'returns a list of properties from second page with 5 items' do
-        response = described_class.properties(page: 2, limit: 5, language: PlatformClient::JAPANESE_LANGUAGE)
+        response = described_class.properties(page: 2, limit: 5, languages: [PlatformClient::JAPANESE_LANGUAGE])
         expect(response).to be_a PlatformClient::Responses::Properties
 
         properties = response.data
