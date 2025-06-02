@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://kabuk-platform.com/api/rooms?language=en-US&limit=3&property_codes%5B%5D=bk60&property_codes%5B%5D=rndm&room_codes%5B%5D=102&room_codes%5B%5D=104
+    uri: https://kabuk-platform.com/api/rooms?languages%5B%5D=en-US&limit=3&property_codes%5B%5D=bk60&property_codes%5B%5D=rndm&room_codes%5B%5D=102&room_codes%5B%5D=104
     body:
       encoding: US-ASCII
       string: ''

@@ -2,7 +2,6 @@
 
 RSpec.describe PlatformClient::Requests::Properties, type: :model do
   describe 'validations' do
-    it { is_expected.to validate_inclusion_of(:language).in_array(PlatformClient::SUPPORTED_LANGUAGES).allow_nil }
     it { is_expected.to allow_value('US').for(:country_code) }
 
     context 'with invalid country code' do

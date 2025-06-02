@@ -56,11 +56,11 @@ module PlatformClient
       # @param country_code [String] ISO 3166-1 alpha-2 country code to filter properties by, default is nil to get properties from all countries
       # @param category_ids [Array<String>] Array of property category IDs(see +.property_categories+) to filter properties by, default is [] to get properties from all categories
       # @param codes [Array<String>] Array of property codes to filter properties by, default is [] to get properties by all codes
-      # @param language [String] Language code to get the response in, default is 'en-US'
+      # @param language [Array<String>] Array of Language codes to get the response in, default is 'en-US'
       #
       # @return [PlatformClient::Responses::Properties]
-      def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], language: PlatformClient::DEFAULT_LANGUAGE) # rubocop:disable Metrics/ParameterLists
-        Properties.call(page:, limit:, country_code:, category_ids:, codes:, language:)
+      def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], languages: [PlatformClient::DEFAULT_LANGUAGE]) # rubocop:disable Metrics/ParameterLists
+        Properties.call(page:, limit:, country_code:, category_ids:, codes:, languages:)
       end
 
       # Get list of property categories
@@ -89,9 +89,9 @@ module PlatformClient
       # @param limit [Integer] Number of items per page, pass nil to get the default number of items
       # @param property_codes [Array<String>] Array of property codes to get rooms for
       # @param room_codes [Array<String>] Array of room codes to get rooms for
-      # @param language [String] Language code to get the response in, default is 'ja-JP'
-      def rooms(page: nil, limit: nil, property_codes: [], room_codes: [], language: PlatformClient::DEFAULT_LANGUAGE)
-        Rooms.call(page:, limit:, property_codes:, room_codes:, language:)
+      # @param languages [Array<String>] Language codes to get the response in, default is 'ja-JP'
+      def rooms(page: nil, limit: nil, property_codes: [], room_codes: [], languages: [PlatformClient::DEFAULT_LANGUAGE])
+        Rooms.call(page:, limit:, property_codes:, room_codes:, languages:)
       end
 
       # ----------------------------------------------------Shopping and Booking-----------------------------------------------------

@@ -8,10 +8,9 @@ module PlatformClient
 
       attribute :property_codes, array: :string
       attribute :room_codes, array: :string
-      attribute :language, :string, default: PlatformClient::DEFAULT_LANGUAGE
+      attribute :languages, array: :string, default: [PlatformClient::DEFAULT_LANGUAGE]
 
       validates :property_codes, presence: true
-      validates :language, inclusion: { in: PlatformClient::SUPPORTED_LANGUAGES }, allow_nil: true
 
       private
 
@@ -19,7 +18,7 @@ module PlatformClient
         pagination_params.merge(
           property_codes:,
           room_codes:,
-          language:
+          languages:
         ).compact_blank
       end
     end
