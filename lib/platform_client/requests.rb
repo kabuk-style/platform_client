@@ -56,7 +56,7 @@ module PlatformClient
       # @param country_code [String] ISO 3166-1 alpha-2 country code to filter properties by, default is nil to get properties from all countries
       # @param category_ids [Array<String>] Array of property category IDs(see +.property_categories+) to filter properties by, default is [] to get properties from all categories
       # @param codes [Array<String>] Array of property codes to filter properties by, default is [] to get properties by all codes
-      # @param language [Array<String>] Array of Language codes to get the response in, default is 'en-US'
+      # @param languages [Array<String>] Array of Language codes to get the response in, default is 'en-US'
       #
       # @return [PlatformClient::Responses::Properties]
       def properties(page: nil, limit: nil, country_code: nil, category_ids: [], codes: [], languages: [PlatformClient::DEFAULT_LANGUAGE]) # rubocop:disable Metrics/ParameterLists
@@ -117,10 +117,11 @@ module PlatformClient
       # @param check_out_date [String] Check-out date in 'YYYY-MM-DD' format
       # @param adults_count [Integer] Number of adults, default is 1
       # @param nationality [String] Nationality code(ISO 3166-1 alpha-2 country code) of the guests looking for available packages
+      # @param cross_sell [Boolean] Whether to check for cross-sell rates, default is false
       #
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY) # rubocop:disable Metrics/ParameterLists
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, cross_sell: false) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:, cross_sell:)
       end
 
       # Create the booking for a room

@@ -10,6 +10,7 @@ module PlatformClient
       attribute :check_out_date, :string
       attribute :adults_count, :integer
       attribute :nationality, :string
+      attribute :cross_sell, :boolean, default: false
 
       validates :property_code, :room_code, presence: true
       validates :check_in_date, :check_out_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: 'must be in YYYY-MM-DD format' }
