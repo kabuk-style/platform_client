@@ -120,9 +120,11 @@ module PlatformClient
       # @param nationality [String] Nationality code(ISO 3166-1 alpha-2 country code) of the guests looking for available packages
       # @param language [String] Language code to get the response in, a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes.
       #   default is 'en-US'
+      # @param cross_sell [Boolean] Whether to check for cross-sell rates, default is false
+      #
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, language: PlatformClient::DEFAULT_LANGUAGE) # rubocop:disable Metrics/ParameterLists
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count:, nationality:, language:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, language: PlatformClient::DEFAULT_LANGUAGE, cross_sell: false) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count:, nationality:, language:, cross_sell:)
       end
 
       # Create the booking for a room
