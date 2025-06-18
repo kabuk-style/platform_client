@@ -13,6 +13,7 @@ module PlatformClient
         attribute :contact_number, :string
         attribute :email, :string
         attribute :guest_ip, :string
+        attribute :customer_session_id, :string
 
         validates :client_reference, :first_name, :last_name, :nationality, :rate_key, :contact_number, presence: true
         validates :nationality, format: { with: /\A[A-Z]{2}\z/, message: 'must be a valid ISO 3166-1 alpha-2 country code' }

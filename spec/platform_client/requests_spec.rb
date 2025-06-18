@@ -397,7 +397,8 @@ RSpec.describe PlatformClient::Requests do
             check_out_date: '2025-03-25',
             adults_count: 1,
             nationality: 'US',
-            country_code: 'FR'
+            country_code: 'FR',
+            customer_session_id: '019782fd-78a1-75b4-bd09-905a0b07bfd0',
           )
           expect(response).to be_a PlatformClient::Responses::Rate
           expect(response.customer_session_id).to eq '019782fd-78a1-75b4-bd09-905a0b07bfd0'
@@ -445,7 +446,8 @@ RSpec.describe PlatformClient::Requests do
           contact_number: '123456',
           nationality: 'JP',
           email: 'john@example.com',
-          guest_ip: '49.36.67.203'
+          guest_ip: '49.36.67.203',
+          customer_session_id: '019782f9-34bd-7f74-bc39-d2d6a338dc86',
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
         expect(response.customer_session_id).to eq '019782f9-34bd-7f74-bc39-d2d6a338dc86'
@@ -462,7 +464,7 @@ RSpec.describe PlatformClient::Requests do
   describe '.cancel_booking' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/cancel_booking' } do
       it 'returns the booking with cancelled status for the specified client reference' do
-        response = described_class.cancel_booking(client_reference: 'youruser1232', guest_ip: '5.5.5.5')
+        response = described_class.cancel_booking(client_reference: 'youruser1232', guest_ip: '5.5.5.5', customer_session_id: '019782fd-278a-7211-81e1-e15b3d7f4326')
         expect(response).to be_a PlatformClient::Responses::Booking::Cancellation
         expect(response.customer_session_id).to eq '019782fd-278a-7211-81e1-e15b3d7f4326'
 

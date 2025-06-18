@@ -7,6 +7,7 @@ module PlatformClient
       class Cancellation < Base
         attribute :client_reference, :string
         attribute :guest_ip, :string
+        attribute :customer_session_id, :string
 
         validates :client_reference, presence: true
 

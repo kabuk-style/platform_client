@@ -12,6 +12,7 @@ module PlatformClient
       attribute :nationality, :string
       attribute :country_code, :string
       attribute :language, :string, default: PlatformClient::DEFAULT_LANGUAGE
+      attribute :customer_session_id, :string
 
       validates :property_code, :room_code, presence: true
       validates :check_in_date, :check_out_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: 'must be in YYYY-MM-DD format' }

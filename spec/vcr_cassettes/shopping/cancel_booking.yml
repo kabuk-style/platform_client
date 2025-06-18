@@ -17,6 +17,8 @@ http_interactions:
       - Bearer <BEARER_TOKEN>
       Accept:
       - "*/*"
+      Customer-Session-Id:
+      - 019782fd-278a-7211-81e1-e15b3d7f4326
   response:
     status:
       code: 200
