@@ -42,6 +42,8 @@ http_interactions:
       - max-age=0, private, must-revalidate
       X-Request-Id:
       - 6cedec7d-79a2-44dd-a6d8-2c8135e44623
+      X-Customer-Session-Id:
+      - 019782f9-34bd-7f74-bc39-d2d6a338dc86
       X-Runtime:
       - '34.704603'
       Server-Timing:
