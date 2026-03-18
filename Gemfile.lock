@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    platform_client (0.1.0)
+    platform_client (0.2.0)
       activemodel (>= 7.2, < 9)
       activesupport (>= 7.2, < 9)
       faraday (~> 1.10)
