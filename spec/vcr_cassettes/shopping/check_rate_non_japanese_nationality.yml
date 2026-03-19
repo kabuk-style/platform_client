@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-03-23&check_out_date=2025-03-25&nationality=US&property_code=bk60&room_code=104
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-03-23&check_out_date=2025-03-25&country_code=FR&language=en-US&nationality=US&property_code=bk60&room_code=104
     body:
       encoding: US-ASCII
       string: ''
@@ -17,6 +17,8 @@ http_interactions:
       - Bearer <BEARER_TOKEN>
       Accept:
       - "*/*"
+      Customer-Session-Id:
+      - 019782fd-78a1-75b4-bd09-905a0b07bfd0
   response:
     status:
       code: 200
@@ -42,6 +44,8 @@ http_interactions:
       - max-age=0, private, must-revalidate
       X-Request-Id:
       - b6be1cde-ee6a-465e-b427-7774a5a51fa4
+      X-Customer-Session-Id:
+      - 019782fd-78a1-75b4-bd09-905a0b07bfd0
       X-Runtime:
       - '37.685712'
       X-Cloud-Trace-Context:

@@ -42,6 +42,8 @@ http_interactions:
       - max-age=0, private, must-revalidate
       X-Request-Id:
       - 9b515c8e-0a31-4c58-b3dc-e49b42c1178a
+      X-Customer-Session-Id:
+      - 01978300-e848-764f-a6fa-a9ab641310e9
       X-Runtime:
       - '0.060279'
       X-Cloud-Trace-Context:

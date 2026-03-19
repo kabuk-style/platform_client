@@ -15,5 +15,11 @@ RSpec.describe PlatformClient::Requests::Booking::Confirmation, type: :model do
       it { is_expected.not_to allow_value('us').for(:nationality) }
       it { is_expected.not_to allow_value('USA').for(:nationality) }
     end
+
+    context 'with email' do
+      it { is_expected.to allow_value('', nil).for(:email) }
+      it { is_expected.to allow_value('user@example.com').for(:email) }
+      it { is_expected.not_to allow_value('invalid-email').for(:email) }
+    end
   end
 end

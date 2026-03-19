@@ -17,6 +17,12 @@ module PlatformClient
         @original_response = response
         @result = response.body
       end
+
+      # Returns customer session ID from the response headers
+      # @return [String, nil] the customer session ID or nil if not present
+      def customer_session_id
+        @original_response.headers['x-customer-session-id'] || @original_response.headers['X-Customer-Session-Id']
+      end
     end
   end
 end

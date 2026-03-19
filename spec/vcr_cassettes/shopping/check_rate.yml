@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-01-23&check_out_date=2025-01-25&nationality=JP&property_code=bk60&room_code=104
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&check_in_date=2025-01-23&check_out_date=2025-01-25&country_code=JP&language=en-US&nationality=JP&property_code=bk60&room_code=104
     body:
       encoding: US-ASCII
       string: ''
@@ -42,6 +42,8 @@ http_interactions:
       - max-age=0, private, must-revalidate
       X-Request-Id:
       - 6cedec7d-79a2-44dd-a6d8-2c8135e44623
+      X-Customer-Session-Id:
+      - 019782f9-34bd-7f74-bc39-d2d6a338dc86
       X-Runtime:
       - '34.704603'
       Server-Timing:

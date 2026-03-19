@@ -40,6 +40,8 @@ http_interactions:
       - no-cache
       X-Request-Id:
       - 359ee700-9ad5-49e4-8d8d-faa38d925b12
+      X-Customer-Session-Id:
+      - 01978300-e848-764f-a6fa-a9ab641310e9
       X-Runtime:
       - '0.019439'
       X-Cloud-Trace-Context:

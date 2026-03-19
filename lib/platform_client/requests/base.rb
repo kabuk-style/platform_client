@@ -58,8 +58,13 @@ module PlatformClient
         @endpoint = PlatformClient::Requests::EndPoint.find!(endpoint_name)
       end
 
+      # Returns the request parameters by excluding the customer_session_id from attributes
+      # and removing blank values.
+      # +customer_session_id+ is sent in the headers instead of the request body. see #headers
+      #
+      # @return [Hash] the request parameters hash with non-blank values
       def params
-        attributes.compact_blank
+        attributes.except('customer_session_id').compact_blank
       end
 
       def uri_params
@@ -72,6 +77,7 @@ module PlatformClient
           'Accept-Encoding' => 'gzip',
           'User-Agent' => "API Client for Kabuk Platform - #{client_app_env}",
           'X-Client-App-Env' => client_app_env,
+          'Customer-Session-Id' => attributes['customer_session_id'],
         }.compact_blank
       end
 

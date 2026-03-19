@@ -18,6 +18,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of amenities from first page' do
         response = described_class.amenities
         expect(response).to be_a PlatformClient::Responses::Amenities
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         amenities = response.data
         expect(amenities).to be_a Array
@@ -36,6 +37,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of amenities from second page with 5 items' do
         response = described_class.amenities(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::Amenities
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         amenities = response.data
         expect(amenities).to be_a Array
@@ -56,6 +58,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of chains from first page' do
         response = described_class.chains
         expect(response).to be_a PlatformClient::Responses::Chains
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         chains = response.data
         expect(chains).to be_a Array
@@ -74,6 +77,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of chains from second page with 5 items' do
         response = described_class.chains(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::Chains
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         chains = response.data
         expect(chains).to be_a Array
@@ -94,6 +98,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of facilities from first page' do
         response = described_class.facilities
         expect(response).to be_a PlatformClient::Responses::Facilities
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         facilities = response.data
         expect(facilities).to be_a Array
@@ -112,6 +117,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of facilities from second page with 5 items' do
         response = described_class.facilities(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::Facilities
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         facilities = response.data
         expect(facilities).to be_a Array
@@ -132,6 +138,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of properties from first page' do
         response = described_class.properties
         expect(response).to be_a PlatformClient::Responses::Properties
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         properties = response.data
 
@@ -151,6 +158,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of properties from second page with 5 items' do
         response = described_class.properties(page: 2, limit: 5, languages: [PlatformClient::JAPANESE_LANGUAGE])
         expect(response).to be_a PlatformClient::Responses::Properties
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         properties = response.data
         expect(properties).to be_a Array
@@ -169,6 +177,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of properties from first page filtered by country code' do
         response = described_class.properties(country_code: 'FR', category_ids: [1, 22], codes: %w[fst1 fst4])
         expect(response).to be_a PlatformClient::Responses::Properties
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         properties = response.data
 
@@ -188,6 +197,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of property categories from first page' do
         response = described_class.property_categories
         expect(response).to be_a PlatformClient::Responses::PropertyCategories
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         property_categories = response.data
         expect(property_categories).to be_a Array
@@ -206,6 +216,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of property categories from second page with 5 items' do
         response = described_class.property_categories(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::PropertyCategories
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         property_categories = response.data
         expect(property_categories).to be_a Array
@@ -226,6 +237,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of room categories from first page' do
         response = described_class.room_categories
         expect(response).to be_a PlatformClient::Responses::RoomCategories
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         room_categories = response.data
         expect(room_categories).to be_a Array
@@ -244,6 +256,7 @@ RSpec.describe PlatformClient::Requests do
       it 'returns a list of room categories from second page with 5 items' do
         response = described_class.room_categories(page: 2, limit: 5)
         expect(response).to be_a PlatformClient::Responses::RoomCategories
+        expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
         room_categories = response.data
         expect(room_categories).to be_a Array
@@ -276,6 +289,7 @@ RSpec.describe PlatformClient::Requests do
       shared_examples 'returns a list of rooms for the specified properties' do
         it 'returns a list of rooms for the specified properties' do
           expect(response).to be_a PlatformClient::Responses::Rooms
+          expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
           rooms = response.data
           expect(rooms).to be_a Array
@@ -327,6 +341,7 @@ RSpec.describe PlatformClient::Requests do
 
         it 'returns a list of matching rooms for the specified property' do
           expect(response).to be_a PlatformClient::Responses::Rooms
+          expect(response.customer_session_id).to eq '01978300-e848-764f-a6fa-a9ab641310e9'
 
           rooms = response.data
           expect(rooms).to be_a Array
@@ -362,9 +377,11 @@ RSpec.describe PlatformClient::Requests do
           room_code: '104',
           check_in_date: '2025-01-23',
           check_out_date: '2025-01-25',
-          adults_count: 1
+          adults_count: 1,
+          country_code: 'JP'
         )
         expect(response).to be_a PlatformClient::Responses::Rate
+        expect(response.customer_session_id).to eq '019782f9-34bd-7f74-bc39-d2d6a338dc86'
 
         rate = response.data
         expect(rate).to be_a Hash
@@ -379,9 +396,12 @@ RSpec.describe PlatformClient::Requests do
             check_in_date: '2025-03-23',
             check_out_date: '2025-03-25',
             adults_count: 1,
-            nationality: 'US'
+            nationality: 'US',
+            country_code: 'FR',
+            customer_session_id: '019782fd-78a1-75b4-bd09-905a0b07bfd0',
           )
           expect(response).to be_a PlatformClient::Responses::Rate
+          expect(response.customer_session_id).to eq '019782fd-78a1-75b4-bd09-905a0b07bfd0'
 
           rate = response.data
           expect(rate).to be_a Hash
@@ -402,6 +422,7 @@ RSpec.describe PlatformClient::Requests do
           adults_count: 1
         )
         expect(response).to be_a PlatformClient::Responses::Availabilities
+        expect(response.customer_session_id).to eq '019782fc-ebb3-7af9-8168-c9d0279f4ab9'
 
         availabilities = response.data
         expect(availabilities).to be_a Array
@@ -423,9 +444,13 @@ RSpec.describe PlatformClient::Requests do
           last_name: 'Doe',
           client_reference: 'XYZ123',
           contact_number: '123456',
-          nationality: 'JP'
+          nationality: 'JP',
+          email: 'john@example.com',
+          guest_ip: '49.36.67.203',
+          customer_session_id: '019782f9-34bd-7f74-bc39-d2d6a338dc86',
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
+        expect(response.customer_session_id).to eq '019782f9-34bd-7f74-bc39-d2d6a338dc86'
 
         booking_response = response.data
         expect(booking_response).to be_a Hash
@@ -439,15 +464,16 @@ RSpec.describe PlatformClient::Requests do
   describe '.cancel_booking' do
     context 'with valid parameters', vcr: { cassette_name: 'shopping/cancel_booking' } do
       it 'returns the booking with cancelled status for the specified client reference' do
-        response = described_class.cancel_booking(client_reference: 'ZFOOIVQVNG')
+        response = described_class.cancel_booking(client_reference: 'youruser1232', guest_ip: '5.5.5.5', customer_session_id: '019782fd-278a-7211-81e1-e15b3d7f4326')
         expect(response).to be_a PlatformClient::Responses::Booking::Cancellation
+        expect(response.customer_session_id).to eq '019782fd-278a-7211-81e1-e15b3d7f4326'
 
         booking_response = response.data
         expect(booking_response).to be_a Hash
         expect(booking_response.keys).to contain_exactly('client_reference', 'status', 'rate', 'guests', 'supplier_reference')
         expect(booking_response['status']).to eq 'cancelled'
         expect(booking_response['rate'].keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
-        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality')
+        expect(booking_response['guests'].sample.keys).to contain_exactly('first_name', 'last_name', 'contact_number', 'nationality', 'email')
       end
     end
   end

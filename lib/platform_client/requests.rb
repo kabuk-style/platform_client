@@ -115,12 +115,15 @@ module PlatformClient
       # @param room_code [String] Room code
       # @param check_in_date [String] Check-in date in 'YYYY-MM-DD' format
       # @param check_out_date [String] Check-out date in 'YYYY-MM-DD' format
+      # @param country_code [String] The country code of the traveler's point of sale(country where the shopping transaction is taking place), in ISO 3166-1 alpha-2 format.
       # @param adults_count [Integer] Number of adults, default is 1
       # @param nationality [String] Nationality code(ISO 3166-1 alpha-2 country code) of the guests looking for available packages
-      #
+      # @param language [String] Language code to get the response in, a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes.
+      #   default is 'en-US'
+      # @param customer_session_id [String] Customer session ID to track the session, default is nil
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY) # rubocop:disable Metrics/ParameterLists
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, adults_count:, nationality:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, language: PlatformClient::DEFAULT_LANGUAGE, customer_session_id: nil) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count:, nationality:, language:, customer_session_id:)
       end
 
       # Create the booking for a room
@@ -131,19 +134,24 @@ module PlatformClient
       # @param last_name [String] Last name of the guest
       # @param nationality [String] Nationality of the guest
       # @param contact_number [String] Contact number of the guest
+      # @param email [String] Email of the guest
+      # @param guest_ip [String] IP address of the guest from where the booking is made
+      # @param customer_session_id [String] Customer session ID to track the session, default is nil
       #
       # @return [PlatformClient::Responses::Booking::Confirmation]
-      def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:) # rubocop:disable Metrics/ParameterLists
-        Booking::Confirmation.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:)
+      def create_booking(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:, email: nil, guest_ip: nil, customer_session_id: nil) # rubocop:disable Metrics/ParameterLists
+        Booking::Confirmation.call(rate_key:, client_reference:, first_name:, last_name:, nationality:, contact_number:, email:, guest_ip:, customer_session_id:)
       end
 
       # Cancel the booking for a room
       #
       # @param client_reference [String] Client reference that was used for the booking
+      # @param guest_ip [String] IP address of the guest from where the cancellation is made
+      # @param customer_session_id [String] Customer session ID to track the session, default is nil
       #
       # @return [PlatformClient::Responses::Booking::Cancellation]
-      def cancel_booking(client_reference:)
-        Booking::Cancellation.call(client_reference:)
+      def cancel_booking(client_reference:, guest_ip: nil, customer_session_id: nil)
+        Booking::Cancellation.call(client_reference:, guest_ip:, customer_session_id:)
       end
     end
   end
