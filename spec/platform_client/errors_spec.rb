@@ -11,7 +11,7 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   end
 
   # ─────────────────────────────────────────────────────────────────────────────
-  # Structured (new) format body
+  # Structured (new) format body — errors as Array
   # ─────────────────────────────────────────────────────────────────────────────
   let(:structured_body) do
     {
@@ -27,6 +27,22 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
           request_id: 'req_abc-123-xyz',
         }
       ],
+    }.to_json
+  end
+
+  # Production format — errors as a Hash object (not wrapped in an array)
+  let(:structured_body_hash_format) do
+    {
+      errors: {
+        code: 'RATE_UNAVAILABLE',
+        message: 'No packages with a friendly cancellation policy are found.',
+        reason: 'NO_FRIENDLY_CANCEL',
+        details: {
+          original_error_message: 'No refundable rates found',
+          search_criteria: { property_code: 'P123', room_code: 'R456' },
+        },
+        request_id: 'req_abc-123-xyz',
+      },
     }.to_json
   end
 
@@ -52,9 +68,15 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   # #structured?
   # ─────────────────────────────────────────────────────────────────────────────
   describe '#structured?' do
-    context 'with structured error body (new format)' do
+    context 'with structured error body — errors as Array (new format)' do
       it 'returns true' do
         expect(described_error(structured_body)).to be_structured
+      end
+    end
+
+    context 'with structured error body — errors as Hash (current production format)' do
+      it 'returns true' do
+        expect(described_error(structured_body_hash_format)).to be_structured
       end
     end
 
@@ -96,9 +118,9 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   end
 
   # ─────────────────────────────────────────────────────────────────────────────
-  # Structured error accessors — new format
+  # Structured error accessors — errors as Array (new format)
   # ─────────────────────────────────────────────────────────────────────────────
-  describe 'structured error accessors' do
+  describe 'structured error accessors (Array format)' do
     subject(:error) { described_error(structured_body) }
 
     describe '#error_code' do
@@ -132,6 +154,25 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
       it 'returns the request_id from the first error object' do
         expect(error.request_id).to eq('req_abc-123-xyz')
       end
+    end
+  end
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Structured error accessors — errors as Hash (current production format)
+  # ─────────────────────────────────────────────────────────────────────────────
+  describe 'structured error accessors (Hash format)' do
+    subject(:error) { described_error(structured_body_hash_format) }
+
+    it 'returns the error_code'    do expect(error.error_code).to eq('RATE_UNAVAILABLE') end
+    it 'returns the error_message' do expect(error.error_message).to eq('No packages with a friendly cancellation policy are found.') end
+    it 'returns the error_reason'  do expect(error.error_reason).to eq('NO_FRIENDLY_CANCEL') end
+    it 'returns the request_id'    do expect(error.request_id).to eq('req_abc-123-xyz') end
+
+    it 'returns the error_details hash' do
+      expect(error.error_details).to eq(
+        'original_error_message' => 'No refundable rates found',
+        'search_criteria' => { 'property_code' => 'P123', 'room_code' => 'R456' }
+      )
     end
   end
 

@@ -75,23 +75,35 @@ module PlatformClient
       # Uses memoization with defined? guard so a nil result is only computed once.
       #
       # @return [Hash, nil]
-      def parsed_error_object # rubocop:disable Metrics/MethodLength
+      def parsed_error_object
         return @parsed_error_object if defined?(@parsed_error_object)
 
+        @parsed_error_object = extract_error_object
+      end
+
+      # @return [Hash, nil]
+      def extract_error_object
         body = response_body
-        if body.blank?
-          @parsed_error_object = nil
-          return @parsed_error_object
-        end
+        return nil if body.blank?
 
         parsed = JSON.parse(body)
-        errors_array = parsed.is_a?(Hash) ? parsed['errors'] : nil
-        first_error = errors_array.is_a?(Array) ? errors_array.first : nil
-        # Only treat as structured if the first element is a Hash (new format).
-        # Legacy format has strings in the errors array — return nil for those.
-        @parsed_error_object = first_error.is_a?(Hash) ? first_error : nil
+        first_error = extract_first_error(parsed)
+        first_error.is_a?(Hash) && first_error.key?('code') ? first_error : nil
       rescue JSON::ParserError
-        @parsed_error_object = nil
+        nil
+      end
+
+      # Handles both response shapes from the Platform API:
+      #   Object format (current production): { "errors": { "code": "...", ... } }
+      #   Array format  (target):             { "errors": [{ "code": "...", ... }] }
+      #
+      # @return [Object, nil]
+      def extract_first_error(parsed)
+        errors_value = parsed.is_a?(Hash) ? parsed['errors'] : nil
+        case errors_value
+        when Array then errors_value.first
+        when Hash  then errors_value
+        end
       end
     end
 

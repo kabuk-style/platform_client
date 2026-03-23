@@ -31,6 +31,11 @@ RSpec.describe PlatformClient::Requests::Base do
     { errors: [{ code: code, message: 'error', reason: 'REASON', details: {}, request_id: 'req_1' }] }.to_json
   end
 
+  # Current production format — errors as a Hash rather than an Array
+  def structured_body_hash_format(code)
+    { errors: { code: code, message: 'error', reason: 'REASON', details: {}, request_id: 'req_1' } }.to_json
+  end
+
   # ── 5xx → InternalError regardless of body ──────────────────────────────────
   describe 'server errors (5xx)' do
     it 'raises InternalError for a Faraday::ServerError with structured body' do
@@ -48,8 +53,8 @@ RSpec.describe PlatformClient::Requests::Base do
     end
   end
 
-  # ── 4xx structured → specific subclass ──────────────────────────────────────
-  describe 'client errors (4xx) with structured body' do
+  # ── 4xx structured → specific subclass (Array format) ───────────────────────
+  describe 'client errors (4xx) with structured body (Array format)' do
     {
       'RATE_UNAVAILABLE' => PlatformClient::Errors::RateUnavailableError,
       'BOOKING_ERROR' => PlatformClient::Errors::BookingError,
@@ -70,6 +75,27 @@ RSpec.describe PlatformClient::Requests::Base do
 
     it 'falls back to ClientError for an unknown structured error_code' do
       result = base.build_error(faraday_client_error(structured_body('UNKNOWN_CODE')))
+      expect(result.class).to eq(PlatformClient::Errors::ClientError)
+    end
+  end
+
+  # ── 4xx structured → specific subclass (Hash format / current production) ───
+  describe 'client errors (4xx) with structured body (Hash format)' do
+    {
+      'RATE_UNAVAILABLE' => PlatformClient::Errors::RateUnavailableError,
+      'BOOKING_ERROR' => PlatformClient::Errors::BookingError,
+      'CANCELLATION_ERROR' => PlatformClient::Errors::CancellationError,
+      'NOT_FOUND' => PlatformClient::Errors::NotFoundError,
+      'VALIDATION_ERROR' => PlatformClient::Errors::ValidationError,
+    }.each do |code, klass|
+      it "routes error_code '#{code}' to #{klass.name.split('::').last}" do
+        result = base.build_error(faraday_client_error(structured_body_hash_format(code)))
+        expect(result).to be_a(klass)
+      end
+    end
+
+    it 'falls back to ClientError for an unknown structured error_code' do
+      result = base.build_error(faraday_client_error(structured_body_hash_format('UNKNOWN_CODE')))
       expect(result.class).to eq(PlatformClient::Errors::ClientError)
     end
   end
