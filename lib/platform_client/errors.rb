@@ -94,5 +94,23 @@ module PlatformClient
         @parsed_error_object = nil
       end
     end
+
+    # Raised for validation failures (422 Unprocessable Entity)
+    class ValidationError < ClientError; end
+
+    # Raised when a requested resource is not found (404)
+    class NotFoundError < ClientError; end
+
+    # Raised when a rate is no longer available for booking
+    class RateUnavailableError < ClientError; end
+
+    # Raised when a booking (confirmation) request fails
+    class BookingError < ClientError; end
+
+    # Raised when a cancellation request fails
+    class CancellationError < ClientError; end
+
+    # Raised for unexpected server-side failures (5xx)
+    class InternalError < ClientError; end
   end
 end
