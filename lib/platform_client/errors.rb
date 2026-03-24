@@ -87,15 +87,22 @@ module PlatformClient
         body = response_body
         return nil if body.blank?
 
-        parsed =
-          case body
-          when String then JSON.parse(body)
-          when Hash, Array then body
-          else return nil
-          end
+        parsed = parse_body(body)
+        return nil if parsed.nil?
 
         first_error = extract_first_error(parsed)
         first_error.is_a?(Hash) && first_error.key?('code') ? first_error : nil
+      end
+
+      # Converts the response body to a parsed Ruby object.
+      # Handles String (JSON), pre-parsed Hash/Array (Faraday JSON middleware), and unknown types.
+      #
+      # @return [Hash, Array, nil]
+      def parse_body(body)
+        case body
+        when String then JSON.parse(body)
+        when Hash, Array then body
+        end
       rescue JSON::ParserError, TypeError
         nil
       end

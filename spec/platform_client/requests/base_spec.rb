@@ -140,6 +140,7 @@ RSpec.describe PlatformClient::Requests::Base do
       expect(result.class).to eq(PlatformClient::Errors::ClientError)
     end
   end
+
   # ── 4xx structured (pre-parsed Hash) → specific subclass (Faraday JSON middleware) ───────
   describe 'client errors (4xx) with pre-parsed Hash body (Faraday JSON middleware)' do
     {

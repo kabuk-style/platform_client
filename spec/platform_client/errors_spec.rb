@@ -336,12 +336,14 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
     it 'does not call JSON.parse when body is already a Hash (pre-parsed by Faraday)' do
       error = described_error(structured_body_pre_parsed_array)
 
-      expect(JSON).not_to receive(:parse)
+      allow(JSON).to receive(:parse).and_call_original
 
       error.error_code
       error.error_message
       error.error_reason
       error.structured?
+
+      expect(JSON).not_to have_received(:parse)
     end
   end
 end
