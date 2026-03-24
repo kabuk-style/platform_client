@@ -49,6 +49,40 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   # Legacy format — errors array contains plain strings
   let(:legacy_body) { { errors: ['Rate is unavailable for the requested parameters.'] }.to_json }
 
+  # Pre-parsed format — when Faraday JSON middleware has already parsed the body (Array format)
+  let(:structured_body_pre_parsed_array) do
+    {
+      'errors' => [
+        {
+          'code' => 'RATE_UNAVAILABLE',
+          'message' => 'No packages with a friendly cancellation policy are found.',
+          'reason' => 'NO_FRIENDLY_CANCEL',
+          'details' => {
+            'original_error_message' => 'No refundable rates found',
+            'search_criteria' => { 'property_code' => 'P123', 'room_code' => 'R456' },
+          },
+          'request_id' => 'req_abc-123-xyz',
+        }
+      ],
+    }
+  end
+
+  # Pre-parsed format — errors as Hash (current production, already parsed by Faraday)
+  let(:structured_body_pre_parsed_hash) do
+    {
+      'errors' => {
+        'code' => 'RATE_UNAVAILABLE',
+        'message' => 'No packages with a friendly cancellation policy are found.',
+        'reason' => 'NO_FRIENDLY_CANCEL',
+        'details' => {
+          'original_error_message' => 'No refundable rates found',
+          'search_criteria' => { 'property_code' => 'P123', 'room_code' => 'R456' },
+        },
+        'request_id' => 'req_abc-123-xyz',
+      },
+    }
+  end
+
   # ─────────────────────────────────────────────────────────────────────────────
   # #response_body
   # ─────────────────────────────────────────────────────────────────────────────
@@ -115,6 +149,18 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
         expect(described_error({ errors: 'plain string' }.to_json)).not_to be_structured
       end
     end
+
+    context 'with a pre-parsed Hash body — errors as Array (Faraday JSON middleware)' do
+      it 'returns true' do
+        expect(described_error(structured_body_pre_parsed_array)).to be_structured
+      end
+    end
+
+    context 'with a pre-parsed Hash body — errors as Hash (Faraday JSON middleware)' do
+      it 'returns true' do
+        expect(described_error(structured_body_pre_parsed_hash)).to be_structured
+      end
+    end
   end
 
   # ─────────────────────────────────────────────────────────────────────────────
@@ -177,6 +223,62 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   end
 
   # ─────────────────────────────────────────────────────────────────────────────
+  # Structured error accessors — pre-parsed Hash body (Faraday JSON middleware)
+  # ─────────────────────────────────────────────────────────────────────────────
+  describe 'structured error accessors (pre-parsed Hash body — Array format)' do
+    subject(:error) { described_error(structured_body_pre_parsed_array) }
+
+    describe '#error_code' do
+      it 'returns the code from the first error object' do
+        expect(error.error_code).to eq('RATE_UNAVAILABLE')
+      end
+    end
+
+    describe '#error_message' do
+      it 'returns the message from the first error object' do
+        expect(error.error_message).to eq('No packages with a friendly cancellation policy are found.')
+      end
+    end
+
+    describe '#error_reason' do
+      it 'returns the reason from the first error object' do
+        expect(error.error_reason).to eq('NO_FRIENDLY_CANCEL')
+      end
+    end
+
+    describe '#error_details' do
+      it 'returns the details hash from the first error object' do
+        expect(error.error_details).to eq(
+          'original_error_message' => 'No refundable rates found',
+          'search_criteria' => { 'property_code' => 'P123', 'room_code' => 'R456' }
+        )
+      end
+    end
+
+    describe '#request_id' do
+      it 'returns the request_id from the first error object' do
+        expect(error.request_id).to eq('req_abc-123-xyz')
+      end
+    end
+  end
+
+  describe 'structured error accessors (pre-parsed Hash body — Hash format)' do
+    subject(:error) { described_error(structured_body_pre_parsed_hash) }
+
+    it 'returns the error_code'    do expect(error.error_code).to eq('RATE_UNAVAILABLE') end
+    it 'returns the error_message' do expect(error.error_message).to eq('No packages with a friendly cancellation policy are found.') end
+    it 'returns the error_reason'  do expect(error.error_reason).to eq('NO_FRIENDLY_CANCEL') end
+    it 'returns the request_id'    do expect(error.request_id).to eq('req_abc-123-xyz') end
+
+    it 'returns the error_details hash' do
+      expect(error.error_details).to eq(
+        'original_error_message' => 'No refundable rates found',
+        'search_criteria' => { 'property_code' => 'P123', 'room_code' => 'R456' }
+      )
+    end
+  end
+
+  # ─────────────────────────────────────────────────────────────────────────────
   # Structured error accessors — old / nil format (return nil gracefully)
   # ─────────────────────────────────────────────────────────────────────────────
   describe 'structured error accessors with non-structured body' do
@@ -218,7 +320,7 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
   # Memoization — parsed_error_object computed only once
   # ─────────────────────────────────────────────────────────────────────────────
   describe 'memoization' do
-    it 'parses the response body only once per error instance' do
+    it 'parses the response body only once per error instance (String body)' do
       error = described_error(structured_body)
 
       allow(JSON).to receive(:parse).once.and_call_original
@@ -229,6 +331,17 @@ RSpec.describe PlatformClient::Errors::ClientError do # rubocop:disable RSpec/Sp
       error.structured?
 
       expect(JSON).to have_received(:parse).once
+    end
+
+    it 'does not call JSON.parse when body is already a Hash (pre-parsed by Faraday)' do
+      error = described_error(structured_body_pre_parsed_array)
+
+      expect(JSON).not_to receive(:parse)
+
+      error.error_code
+      error.error_message
+      error.error_reason
+      error.structured?
     end
   end
 end

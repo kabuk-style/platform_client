@@ -36,6 +36,16 @@ RSpec.describe PlatformClient::Requests::Base do
     { errors: { code: code, message: 'error', reason: 'REASON', details: {}, request_id: 'req_1' } }.to_json
   end
 
+  # Pre-parsed Array format — as returned by Faraday JSON middleware
+  def structured_body_pre_parsed(code)
+    { 'errors' => [{ 'code' => code, 'message' => 'error', 'reason' => 'REASON', 'details' => {}, 'request_id' => 'req_1' }] }
+  end
+
+  # Pre-parsed Hash format — as returned by Faraday JSON middleware (current production shape)
+  def structured_body_pre_parsed_hash_format(code)
+    { 'errors' => { 'code' => code, 'message' => 'error', 'reason' => 'REASON', 'details' => {}, 'request_id' => 'req_1' } }
+  end
+
   # ── 5xx → InternalError regardless of body ──────────────────────────────────
   describe 'server errors (5xx)' do
     it 'raises InternalError for a Faraday::ServerError with structured body' do
@@ -50,6 +60,19 @@ RSpec.describe PlatformClient::Requests::Base do
 
     it 'InternalError is a ClientError (backward compatible)' do
       expect(base.build_error(faraday_server_error)).to be_a(PlatformClient::Errors::ClientError)
+    end
+  end
+
+  # ── Faraday::ParsingError → InternalError ────────────────────────────────────────────
+  describe 'parsing errors (invalid JSON from proxy / middleware)' do
+    let(:parsing_error) { Faraday::ParsingError.new('unexpected token at \'invalid json\'') }
+
+    it 'wraps Faraday::ParsingError as InternalError' do
+      expect(base.build_error(parsing_error)).to be_a(PlatformClient::Errors::InternalError)
+    end
+
+    it 'InternalError is a ClientError (backward compatible)' do
+      expect(base.build_error(parsing_error)).to be_a(PlatformClient::Errors::ClientError)
     end
   end
 
@@ -114,6 +137,31 @@ RSpec.describe PlatformClient::Requests::Base do
 
     it 'returns a plain ClientError for an HTML body' do
       result = base.build_error(faraday_client_error('<html>502</html>'))
+      expect(result.class).to eq(PlatformClient::Errors::ClientError)
+    end
+  end
+  # ── 4xx structured (pre-parsed Hash) → specific subclass (Faraday JSON middleware) ───────
+  describe 'client errors (4xx) with pre-parsed Hash body (Faraday JSON middleware)' do
+    {
+      'RATE_UNAVAILABLE' => PlatformClient::Errors::RateUnavailableError,
+      'BOOKING_ERROR' => PlatformClient::Errors::BookingError,
+      'CANCELLATION_ERROR' => PlatformClient::Errors::CancellationError,
+      'NOT_FOUND' => PlatformClient::Errors::NotFoundError,
+      'VALIDATION_ERROR' => PlatformClient::Errors::ValidationError,
+    }.each do |code, klass|
+      it "routes '#{code}' to #{klass.name.split('::').last} (Array format, pre-parsed)" do
+        result = base.build_error(faraday_client_error(structured_body_pre_parsed(code)))
+        expect(result).to be_a(klass)
+      end
+
+      it "routes '#{code}' to #{klass.name.split('::').last} (Hash format, pre-parsed)" do
+        result = base.build_error(faraday_client_error(structured_body_pre_parsed_hash_format(code)))
+        expect(result).to be_a(klass)
+      end
+    end
+
+    it 'falls back to ClientError for an unknown structured error_code' do
+      result = base.build_error(faraday_client_error(structured_body_pre_parsed('UNKNOWN_CODE')))
       expect(result.class).to eq(PlatformClient::Errors::ClientError)
     end
   end

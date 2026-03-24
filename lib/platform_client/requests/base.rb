@@ -30,7 +30,7 @@ module PlatformClient
 
         # Build the response object
         response_class.new(response)
-      rescue Faraday::ClientError, Faraday::ServerError => e
+      rescue Faraday::ClientError, Faraday::ServerError, Faraday::ParsingError => e
         raise build_error(e)
       end
 
@@ -108,11 +108,13 @@ module PlatformClient
       # When the response body is structured (new format) the error_code is used for routing.
       # When the response body is legacy / non-JSON, the base ClientError is raised so that
       # all existing rescue clauses continue to work.
+      # Faraday::ServerError (5xx) and Faraday::ParsingError are always wrapped as InternalError.
       #
       # @param faraday_error [Faraday::Error]
       # @return [PlatformClient::Errors::ClientError]
       def build_error(faraday_error)
         return PlatformClient::Errors::InternalError.new(faraday_error) if faraday_error.is_a?(Faraday::ServerError)
+        return PlatformClient::Errors::InternalError.new(faraday_error) if faraday_error.is_a?(Faraday::ParsingError)
 
         error = PlatformClient::Errors::ClientError.new(faraday_error)
         structured_error_for(error) || error

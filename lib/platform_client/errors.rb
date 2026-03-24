@@ -19,10 +19,11 @@ module PlatformClient
         super
       end
 
-      # Convenience accessor for the raw response body string from the original Faraday error.
-      # Avoids callers needing `e.original_error.try(:response_body)`.
+      # Convenience accessor for the response body from the original Faraday error.
+      # May be a String (raw JSON), Hash, or Array when Faraday's JSON middleware has
+      # already parsed the body. Avoids callers needing `e.original_error.try(:response_body)`.
       #
-      # @return [String, nil]
+      # @return [String, Hash, Array, nil]
       def response_body
         original_error.try(:response_body)
       end
@@ -86,10 +87,16 @@ module PlatformClient
         body = response_body
         return nil if body.blank?
 
-        parsed = JSON.parse(body)
+        parsed =
+          case body
+          when String then JSON.parse(body)
+          when Hash, Array then body
+          else return nil
+          end
+
         first_error = extract_first_error(parsed)
         first_error.is_a?(Hash) && first_error.key?('code') ? first_error : nil
-      rescue JSON::ParserError
+      rescue JSON::ParserError, TypeError
         nil
       end
 
