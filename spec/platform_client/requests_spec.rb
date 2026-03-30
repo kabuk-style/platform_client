@@ -398,7 +398,7 @@ RSpec.describe PlatformClient::Requests do
             adults_count: 1,
             nationality: 'US',
             country_code: 'FR',
-            customer_session_id: '019782fd-78a1-75b4-bd09-905a0b07bfd0',
+            customer_session_id: '019782fd-78a1-75b4-bd09-905a0b07bfd0'
           )
           expect(response).to be_a PlatformClient::Responses::Rate
           expect(response.customer_session_id).to eq '019782fd-78a1-75b4-bd09-905a0b07bfd0'
@@ -447,7 +447,7 @@ RSpec.describe PlatformClient::Requests do
           nationality: 'JP',
           email: 'john@example.com',
           guest_ip: '49.36.67.203',
-          customer_session_id: '019782f9-34bd-7f74-bc39-d2d6a338dc86',
+          customer_session_id: '019782f9-34bd-7f74-bc39-d2d6a338dc86'
         )
         expect(response).to be_a PlatformClient::Responses::Booking::Confirmation
         expect(response.customer_session_id).to eq '019782f9-34bd-7f74-bc39-d2d6a338dc86'

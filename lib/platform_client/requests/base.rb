@@ -30,9 +30,8 @@ module PlatformClient
 
         # Build the response object
         response_class.new(response)
-      rescue Faraday::ClientError => e # Handle 4xx errors from PlatformClient
-        # TODO: For now just wrap the Faraday client error and re-raise it. Later we can handle specific errors.
-        raise PlatformClient::Errors::ClientError, e
+      rescue Faraday::ClientError, Faraday::ServerError, Faraday::ParsingError => e
+        raise build_error(e)
       end
 
       private
@@ -94,6 +93,38 @@ module PlatformClient
 
       def client_app_env
         PlatformClient.configuration.client_app_env
+      end
+
+      # Maps structured error codes returned by the Platform API to specific error subclasses.
+      ERROR_CODE_MAP = {
+        'RATE_UNAVAILABLE' => PlatformClient::Errors::RateUnavailableError,
+        'BOOKING_ERROR' => PlatformClient::Errors::BookingError,
+        'CANCELLATION_ERROR' => PlatformClient::Errors::CancellationError,
+        'NOT_FOUND' => PlatformClient::Errors::NotFoundError,
+        'VALIDATION_ERROR' => PlatformClient::Errors::ValidationError,
+      }.freeze
+
+      # Wraps a Faraday error in the most specific PlatformClient error subclass available.
+      # When the response body is structured (new format) the error_code is used for routing.
+      # When the response body is legacy / non-JSON, the base ClientError is raised so that
+      # all existing rescue clauses continue to work.
+      # Faraday::ServerError (5xx) and Faraday::ParsingError are always wrapped as InternalError.
+      #
+      # @param faraday_error [Faraday::Error]
+      # @return [PlatformClient::Errors::ClientError]
+      def build_error(faraday_error)
+        return PlatformClient::Errors::InternalError.new(faraday_error) if faraday_error.is_a?(Faraday::ServerError)
+        return PlatformClient::Errors::InternalError.new(faraday_error) if faraday_error.is_a?(Faraday::ParsingError)
+
+        error = PlatformClient::Errors::ClientError.new(faraday_error)
+        structured_error_for(error) || error
+      end
+
+      def structured_error_for(error)
+        return unless error.structured?
+
+        klass = ERROR_CODE_MAP[error.error_code]
+        klass&.new(error.original_error)
       end
     end
   end
