@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&board_code=breakfast&check_in_date=2025-01-23&check_out_date=2025-01-25&country_code=JP&language=en-US&nationality=JP&property_code=bk60&room_code=104
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform -
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Id:
+      - 7dfeda8e-79a2-44dd-a6d8-2c8135e44701
+      X-Customer-Session-Id:
+      - 019782f9-34bd-7f74-bc39-d2d6a338dc86
+    body:
+      encoding: UTF-8
+      string: '{"rate_key":"9a11c790-13cd-4c1e-bfe3-1fdc7e67c401","net":"12433.10","available_rooms":2,"board_code":"breakfast","non_refundable":false,"cancellation_remarks":"This
+        policy is fully refundable","supplier_description":"Standard - 1 Queen Bed - Breakfast
+        included","check_in_date":"2025-01-23","check_out_date":"2025-01-25","room_name":"Harmony
+        Johnson I","room_code":"104","check_in_instructions":null,"hotel_fees":null,"cancellation_policies":[{"date_from":"2025-01-21","date_to":"2025-01-24","percent":0.0,"amount":"0.0"}]}'
+  recorded_at: Wed, 23 Jul 2026 04:00:00 GMT
+recorded_with: VCR 6.3.1

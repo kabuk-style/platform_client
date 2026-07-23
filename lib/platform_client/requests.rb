@@ -121,9 +121,13 @@ module PlatformClient
       # @param language [String] Language code to get the response in, a subset of BCP47 format that only uses hyphenated pairs of two-digit language and country codes.
       #   default is 'en-US'
       # @param customer_session_id [String] Customer session ID to track the session, default is nil
+      # @param board_code [String] Boarding (meal) type to check the rate for. One of: room_only, breakfast, lunch, dinner,
+      #   half_board, full_board, all_inclusive. Default is nil, in which case the Platform defaults to room_only.
+      #   Non-room_only values require multi-board support to be enabled on the Platform; otherwise the request
+      #   fails with a +PlatformClient::Errors::ValidationError+ (422).
       # @return [PlatformClient::Responses::Rate]
-      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, language: PlatformClient::DEFAULT_LANGUAGE, customer_session_id: nil) # rubocop:disable Metrics/ParameterLists
-        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count:, nationality:, language:, customer_session_id:)
+      def check_rate(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count: 1, nationality: PlatformClient::DEFUAULT_NATIONALITY, language: PlatformClient::DEFAULT_LANGUAGE, board_code: nil, customer_session_id: nil) # rubocop:disable Metrics/ParameterLists
+        Rate.call(property_code:, room_code:, check_in_date:, check_out_date:, country_code:, adults_count:, nationality:, language:, board_code:, customer_session_id:)
       end
 
       # Create the booking for a room

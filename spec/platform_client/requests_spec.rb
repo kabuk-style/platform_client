@@ -408,6 +408,26 @@ RSpec.describe PlatformClient::Requests do
           expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
         end
       end
+
+      context 'with board_code' do
+        it 'sends board_code and returns the rate for the requested boarding type', vcr: { cassette_name: 'shopping/check_rate_with_board_code' } do
+          response = described_class.check_rate(
+            property_code: 'bk60',
+            room_code: '104',
+            check_in_date: '2025-01-23',
+            check_out_date: '2025-01-25',
+            adults_count: 1,
+            country_code: 'JP',
+            board_code: 'breakfast'
+          )
+          expect(response).to be_a PlatformClient::Responses::Rate
+
+          rate = response.data
+          expect(rate).to be_a Hash
+          expect(rate['board_code']).to eq 'breakfast'
+          expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+        end
+      end
     end
   end
 
