@@ -9,6 +9,7 @@ module PlatformClient
       attribute :from_date, :string
       attribute :to_date, :string
       attribute :adults_count, :integer
+      attribute :board_code, :string
 
       validates :property_code, presence: true
       validates :from_date, :to_date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: 'must be in YYYY-MM-DD format' }

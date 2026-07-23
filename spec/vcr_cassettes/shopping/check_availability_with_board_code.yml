@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_availability?adults_count=1&board_code=breakfast&from_date=2025-02-19&property_code=bk60&room_code=104&to_date=2025-02-20
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform -
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Id:
+      - 5815577c-21bc-46f0-b113-e0dc512a74e4
+      X-Customer-Session-Id:
+      - 019782fc-ebb3-7af9-8168-c9d0279f4ab9
+    body:
+      encoding: UTF-8
+      string: '[{"date":"2025-02-19","net":"301.20","available_rooms":3,"board_code":"breakfast","non_refundable":false,"cancellation_remarks":"Voluptate
+        ratione neque.","supplier_description":"Magnam tenetur iusto asperiores.","room_name":"Harmony
+        Johnson I","room_code":"104","adults_count":1,"cancellation_policies":[{"date_from":"2025-02-12","date_to":"2025-02-26","percent":40.32,"amount":"65.54"}]}]'
+  recorded_at: Wed, 23 Jul 2026 04:00:00 GMT
+recorded_with: VCR 6.3.1

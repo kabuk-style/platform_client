@@ -453,6 +453,42 @@ RSpec.describe PlatformClient::Requests do
         expect(availability.keys).to contain_exactly('date', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'room_name', 'room_code', 'cancellation_policies')
       end
     end
+
+    context 'with board_code filter', vcr: { cassette_name: 'shopping/check_availability_with_board_code' } do
+      it 'sends board_code and returns only that boarding type' do
+        response = described_class.check_availability(
+          property_code: 'bk60',
+          room_code: '104',
+          from_date: '2025-02-19',
+          to_date: '2025-02-20',
+          adults_count: 1,
+          board_code: 'breakfast'
+        )
+        expect(response).to be_a PlatformClient::Responses::Availabilities
+
+        availabilities = response.data
+        expect(availabilities).to be_a Array
+        expect(availabilities.map { |a| a['board_code'] }).to all(eq('breakfast'))
+      end
+    end
+
+    context 'when the property offers multiple boarding types', vcr: { cassette_name: 'shopping/check_availability_multi_board' } do
+      it 'returns one row per boarding type when board_code is omitted' do
+        response = described_class.check_availability(
+          property_code: 'bk60',
+          room_code: '104',
+          from_date: '2025-02-19',
+          to_date: '2025-02-20',
+          adults_count: 1
+        )
+        expect(response).to be_a PlatformClient::Responses::Availabilities
+
+        availabilities = response.data
+        expect(availabilities.size).to eq 3
+        expect(availabilities.map { |a| a['board_code'] }).to contain_exactly('room_only', 'breakfast', 'half_board')
+        expect(availabilities.sample.keys).to contain_exactly('date', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'room_name', 'room_code', 'adults_count', 'cancellation_policies')
+      end
+    end
   end
 
   describe '.create_booking' do

@@ -103,10 +103,14 @@ module PlatformClient
       # @param from_date [String] Check-in date in 'YYYY-MM-DD' format
       # @param to_date [String] Check-out date in 'YYYY-MM-DD' format
       # @param adults_count [Integer] Number of adults, default is nil to fetch availability for all available occupancies
+      # @param board_code [String] Boarding (meal) type filter. One of: room_only, breakfast, lunch, dinner,
+      #   half_board, full_board, all_inclusive. Default is nil, in which case the Platform returns one best-price
+      #   row per boarding type the property offers. Non-room_only values require multi-board support to be enabled
+      #   on the Platform; otherwise the request fails with a +PlatformClient::Errors::ValidationError+ (422).
       #
       # @return [PlatformClient::Responses::Availabilities]
-      def check_availability(property_code:, from_date:, to_date:, adults_count: nil, room_code: nil)
-        Availabilities.call(property_code:, room_code:, from_date:, to_date:, adults_count:)
+      def check_availability(property_code:, from_date:, to_date:, adults_count: nil, room_code: nil, board_code: nil) # rubocop:disable Metrics/ParameterLists
+        Availabilities.call(property_code:, room_code:, from_date:, to_date:, adults_count:, board_code:)
       end
 
       # Check rate for a property room
