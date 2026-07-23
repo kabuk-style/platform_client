@@ -102,10 +102,10 @@ module PlatformClient
       # @param room_code [String] Room code
       # @param from_date [String] Check-in date in 'YYYY-MM-DD' format
       # @param to_date [String] Check-out date in 'YYYY-MM-DD' format
-      # @param adults_count [Integer] Number of adults, default is 1
+      # @param adults_count [Integer] Number of adults, default is nil to fetch availability for all available occupancies
       #
       # @return [PlatformClient::Responses::Availabilities]
-      def check_availability(property_code:, from_date:, to_date:, adults_count: 1, room_code: nil)
+      def check_availability(property_code:, from_date:, to_date:, adults_count: nil, room_code: nil)
         Availabilities.call(property_code:, room_code:, from_date:, to_date:, adults_count:)
       end
 
