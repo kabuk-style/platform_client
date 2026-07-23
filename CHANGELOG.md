@@ -11,3 +11,9 @@
   `room_only` for check_rate, all offered boards for check_availability).
   Requires multi-board support to be enabled on the Platform for
   non-`room_only` values.
+
+### Changed
+
+- `PlatformClient::Requests.check_availability` no longer defaults `adults_count`
+  to `1`. When omitted, the parameter is not sent and the Platform returns
+  availabilities for all available occupancies.
