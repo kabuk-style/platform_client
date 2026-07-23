@@ -429,6 +429,18 @@ RSpec.describe PlatformClient::Requests do
         end
       end
     end
+
+    context 'with a non-room_only board_code while multi-board support is disabled' do
+      it 'raises ValidationError with the structured error details', vcr: { cassette_name: 'shopping/check_rate_multi_board_disabled' } do
+        expect { described_class.check_rate(property_code: 'bk60', room_code: '104', check_in_date: '2025-01-23', check_out_date: '2025-01-25', adults_count: 1, country_code: 'JP', board_code: 'half_board') }
+          .to raise_error(PlatformClient::Errors::ValidationError) do |error|
+          expect(error.error_code).to eq 'VALIDATION_ERROR'
+          expect(error.error_reason).to eq 'INVALID_RECORD'
+          expect(error.error_details).to eq({ 'field' => 'board_code' })
+          expect(error.message).to eq 'Board code multi-board support is not enabled'
+        end
+      end
+    end
   end
 
   describe '.check_availability' do
