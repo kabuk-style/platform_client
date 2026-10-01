@@ -21,4 +21,16 @@ RSpec.describe PlatformClient::Requests::Availabilities, type: :model do
       end
     end
   end
+
+  describe 'request params' do
+    it 'includes board_code when set' do
+      request = described_class.new(property_code: 'bk60', board_code: 'breakfast')
+      expect(request.send(:params)).to include('board_code' => 'breakfast')
+    end
+
+    it 'omits board_code when not set' do
+      request = described_class.new(property_code: 'bk60')
+      expect(request.send(:params)).not_to have_key('board_code')
+    end
+  end
 end

@@ -1,0 +1,33 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://kabuk-platform.com/api/check_rate?adults_count=1&board_code=half_board&check_in_date=2025-01-23&check_out_date=2025-01-25&country_code=JP&language=en-US&nationality=JP&property_code=bk60&room_code=104
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - API Client for Kabuk Platform -
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Id:
+      - 8ea0fb9f-8ab3-55ee-b7e9-3d9246f55812
+    body:
+      encoding: UTF-8
+      string: '{"errors":[{"code":"VALIDATION_ERROR","message":"Board code multi-board support is not enabled","reason":"INVALID_RECORD","details":{"field":"board_code"}}]}'
+  recorded_at: Wed, 23 Jul 2026 04:00:00 GMT
+recorded_with: VCR 6.3.1

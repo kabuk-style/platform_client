@@ -408,6 +408,38 @@ RSpec.describe PlatformClient::Requests do
           expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
         end
       end
+
+      context 'with board_code' do
+        it 'sends board_code and returns the rate for the requested boarding type', vcr: { cassette_name: 'shopping/check_rate_with_board_code' } do
+          response = described_class.check_rate(
+            property_code: 'bk60',
+            room_code: '104',
+            check_in_date: '2025-01-23',
+            check_out_date: '2025-01-25',
+            adults_count: 1,
+            country_code: 'JP',
+            board_code: 'breakfast'
+          )
+          expect(response).to be_a PlatformClient::Responses::Rate
+
+          rate = response.data
+          expect(rate).to be_a Hash
+          expect(rate['board_code']).to eq 'breakfast'
+          expect(rate.keys).to contain_exactly('rate_key', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'check_in_date', 'check_out_date', 'room_name', 'room_code', 'cancellation_policies', 'check_in_instructions', 'hotel_fees')
+        end
+      end
+    end
+
+    context 'with a non-room_only board_code while multi-board support is disabled' do
+      it 'raises ValidationError with the structured error details', vcr: { cassette_name: 'shopping/check_rate_multi_board_disabled' } do
+        expect { described_class.check_rate(property_code: 'bk60', room_code: '104', check_in_date: '2025-01-23', check_out_date: '2025-01-25', adults_count: 1, country_code: 'JP', board_code: 'half_board') }
+          .to raise_error(PlatformClient::Errors::ValidationError) do |error|
+          expect(error.error_code).to eq 'VALIDATION_ERROR'
+          expect(error.error_reason).to eq 'INVALID_RECORD'
+          expect(error.error_details).to eq({ 'field' => 'board_code' })
+          expect(error.message).to eq 'Board code multi-board support is not enabled'
+        end
+      end
     end
   end
 
@@ -431,6 +463,42 @@ RSpec.describe PlatformClient::Requests do
         availability = availabilities.sample
         expect(availability).to be_a Hash
         expect(availability.keys).to contain_exactly('date', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'room_name', 'room_code', 'cancellation_policies')
+      end
+    end
+
+    context 'with board_code filter', vcr: { cassette_name: 'shopping/check_availability_with_board_code' } do
+      it 'sends board_code and returns only that boarding type' do
+        response = described_class.check_availability(
+          property_code: 'bk60',
+          room_code: '104',
+          from_date: '2025-02-19',
+          to_date: '2025-02-20',
+          adults_count: 1,
+          board_code: 'breakfast'
+        )
+        expect(response).to be_a PlatformClient::Responses::Availabilities
+
+        availabilities = response.data
+        expect(availabilities).to be_a Array
+        expect(availabilities.map { |a| a['board_code'] }).to all(eq('breakfast'))
+      end
+    end
+
+    context 'when the property offers multiple boarding types', vcr: { cassette_name: 'shopping/check_availability_multi_board' } do
+      it 'returns one row per boarding type when board_code is omitted' do
+        response = described_class.check_availability(
+          property_code: 'bk60',
+          room_code: '104',
+          from_date: '2025-02-19',
+          to_date: '2025-02-20',
+          adults_count: 1
+        )
+        expect(response).to be_a PlatformClient::Responses::Availabilities
+
+        availabilities = response.data
+        expect(availabilities.size).to eq 3
+        expect(availabilities.map { |a| a['board_code'] }).to contain_exactly('room_only', 'breakfast', 'half_board')
+        expect(availabilities.sample.keys).to contain_exactly('date', 'net', 'available_rooms', 'board_code', 'non_refundable', 'cancellation_remarks', 'supplier_description', 'room_name', 'room_code', 'adults_count', 'cancellation_policies')
       end
     end
   end
