@@ -74,6 +74,11 @@ module PlatformClient
             type: :shopping,
           },
         },
+        room_occupancy: {
+          uri: '/api/hafh/properties/@property_code/rooms/@room_code/occupancy',
+          method: :put,
+          type: :hafh,
+        },
       }.freeze
 
       class << self

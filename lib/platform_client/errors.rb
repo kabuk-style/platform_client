@@ -136,6 +136,30 @@ module PlatformClient
     # Raised when a cancellation request fails
     class CancellationError < ClientError; end
 
+    # Accessor for the stored room occupancy that Platform returns with a 409 on the room occupancy PUT
+    module RoomOccupancyCurrent
+      # @return [Hash, nil] the stored room occupancy (property_code, room_code, supplier, adults_counts, changed_at)
+      def current
+        error_details&.fetch('current', nil)
+      end
+    end
+
+    # Raised (409 STALE_CHANGE) when a newer change for the room is already stored, typically a delayed retry.
+    # Safe to treat as done.
+    class RoomOccupancyStaleChangeError < ClientError
+      include RoomOccupancyCurrent
+    end
+
+    # Raised (409 CONFLICTING_CHANGE) when a different change with the same changed_at is already stored.
+    # The caller must resolve it.
+    class RoomOccupancyConflictError < ClientError
+      include RoomOccupancyCurrent
+    end
+
+    # Raised (422) when Platform rejects a room occupancy write. See #error_reason:
+    # UNKNOWN_PROPERTY, UNKNOWN_ROOM, INVALID_ADULTS_COUNTS, INVALID_CHANGED_AT or UNLINKABLE_PROPERTY.
+    class RoomOccupancyRejectedError < ValidationError; end
+
     # Raised for unexpected server-side failures (5xx)
     class InternalError < ClientError; end
   end
