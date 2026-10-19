@@ -14,6 +14,7 @@ require 'platform_client/requests/rate'
 require 'platform_client/requests/booking/confirmation'
 require 'platform_client/requests/booking/cancellation'
 require 'platform_client/requests/availabilities'
+require 'platform_client/requests/room_occupancy'
 
 module PlatformClient
   # Wrapper over requests
@@ -160,6 +161,34 @@ module PlatformClient
       # @return [PlatformClient::Responses::Booking::Cancellation]
       def cancel_booking(client_reference:, guest_ip: nil, customer_session_id: nil)
         Booking::Cancellation.call(client_reference:, guest_ip:, customer_session_id:)
+      end
+
+      # ---------------------------------------------------------HafH----------------------------------------------------------------
+
+      # Set which adults counts Platform collects availability for, for one room
+      #
+      # Writes are ordered per room by +changed_at+. Sending the same +changed_at+ with the same set again is an
+      # idempotent success, so retries are safe.
+      #
+      # @param property_code [String] Master property code (4 chars, case-sensitive), sent unchanged
+      # @param room_code [String] Master room code, the same values +.rooms+ returns
+      # @param adults_counts [Array<Integer>] Distinct adults counts from 1 to 14. +[]+ switches the room off.
+      #   Rakuten properties accept only +[]+ or +[2]+
+      # @param changed_at [Time, String] When the change happened (not when it is sent), no more than 5 minutes in
+      #   the future. A Time is sent with microseconds via +iso8601(6)+; a String must be ISO 8601 with a zone and
+      #   is sent as given
+      #
+      # @raise [PlatformClient::Errors::RoomOccupancyStaleChangeError] (409) a newer change is already stored,
+      #   typically a delayed retry; safe to treat as done. +#current+ returns the stored room occupancy
+      # @raise [PlatformClient::Errors::RoomOccupancyConflictError] (409) a different set with the same +changed_at+
+      #   is already stored; the caller must resolve it. +#current+ returns the stored room occupancy
+      # @raise [PlatformClient::Errors::RoomOccupancyRejectedError] (422) see +#error_reason+: UNKNOWN_PROPERTY,
+      #   UNKNOWN_ROOM, INVALID_ADULTS_COUNTS, INVALID_CHANGED_AT or UNLINKABLE_PROPERTY. Not retryable
+      # @raise [PlatformClient::Errors::InternalError] (5xx) unexpected server-side failure
+      #
+      # @return [PlatformClient::Responses::RoomOccupancy]
+      def update_room_occupancy(property_code:, room_code:, adults_counts:, changed_at:)
+        RoomOccupancy.call(property_code:, room_code:, adults_counts:, changed_at:)
       end
     end
   end

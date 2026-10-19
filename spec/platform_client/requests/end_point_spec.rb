@@ -81,5 +81,13 @@ RSpec.describe PlatformClient::Requests::EndPoint do
       expect(endpoint.method).to eq(:delete)
       expect(endpoint.type).to eq(:shopping)
     end
+
+    it 'returns the correct endpoint for room occupancy' do
+      endpoint = described_class.find!(:room_occupancy)
+
+      expect(endpoint.uri).to eq('/api/hafh/properties/@property_code/rooms/@room_code/occupancy')
+      expect(endpoint.method).to eq(:put)
+      expect(endpoint.type).to eq(:hafh)
+    end
   end
 end
